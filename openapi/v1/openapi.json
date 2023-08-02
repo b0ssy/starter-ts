@@ -1,0 +1,12 @@
+{
+  "info": {
+    "title": "OpenAPI Definitions",
+    "version": "0.1.0"
+  },
+  "openapi": "3.0.0",
+  "components": {
+    "schemas": {},
+    "parameters": {}
+  },
+  "paths": {}
+}

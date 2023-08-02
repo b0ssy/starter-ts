@@ -1,0 +1,4268 @@
+{
+  "info": {
+    "title": "OpenAPI Definitions",
+    "version": "0.1.0"
+  },
+  "openapi": "3.0.0",
+  "components": {
+    "schemas": {
+      "V1AdminProductsPostRequestBody": {
+        "type": "object",
+        "properties": {
+          "expiresAt": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true,
+            "enum": [
+              "basic",
+              "group"
+            ]
+          },
+          "category": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "summary": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "currency": {
+            "type": "string",
+            "nullable": true,
+            "enum": [
+              "SGD"
+            ]
+          },
+          "price": {
+            "type": "number",
+            "nullable": true
+          },
+          "buyMinimumQuantity": {
+            "type": "number",
+            "nullable": true
+          },
+          "buyMaximumQuantity": {
+            "type": "number",
+            "nullable": true
+          },
+          "buyGroupOfQuantity": {
+            "type": "number",
+            "nullable": true
+          },
+          "sku": {
+            "type": "string",
+            "nullable": true
+          },
+          "stockQuantity": {
+            "type": "number",
+            "nullable": true
+          },
+          "visiblility": {
+            "type": "string",
+            "nullable": true,
+            "enum": [
+              "visible",
+              "hidden"
+            ]
+          }
+        }
+      },
+      "V1AdminProductsPost200Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "data"
+        ]
+      },
+      "V1AdminProducts_id_Get200Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "createdAt": {
+                    "type": "string"
+                  },
+                  "updatedAt": {
+                    "type": "string"
+                  },
+                  "deletedAt": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "expiresAt": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "type": {
+                    "type": "string",
+                    "nullable": true,
+                    "enum": [
+                      "basic",
+                      "group"
+                    ]
+                  },
+                  "category": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "name": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "summary": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "description": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "currency": {
+                    "type": "string",
+                    "nullable": true,
+                    "enum": [
+                      "SGD"
+                    ]
+                  },
+                  "price": {
+                    "type": "number",
+                    "nullable": true
+                  },
+                  "buyMinimumQuantity": {
+                    "type": "number",
+                    "nullable": true
+                  },
+                  "buyMaximumQuantity": {
+                    "type": "number",
+                    "nullable": true
+                  },
+                  "buyGroupOfQuantity": {
+                    "type": "number",
+                    "nullable": true
+                  },
+                  "sku": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "stockQuantity": {
+                    "type": "number",
+                    "nullable": true
+                  },
+                  "visiblility": {
+                    "type": "string",
+                    "nullable": true,
+                    "enum": [
+                      "visible",
+                      "hidden"
+                    ]
+                  },
+                  "stores": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "createdAt": {
+                          "type": "string"
+                        },
+                        "updatedAt": {
+                          "type": "string"
+                        },
+                        "deletedAt": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "name": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "description": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "addressCity": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "addressCountry": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "addressState": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "addressLine1": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "addressLine2": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "addressPostalCode": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "openingHours": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "contactNumbers": {
+                          "type": "string",
+                          "nullable": true
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "createdAt",
+                        "updatedAt"
+                      ]
+                    }
+                  },
+                  "discounts": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "createdAt": {
+                          "type": "string"
+                        },
+                        "updatedAt": {
+                          "type": "string"
+                        },
+                        "startsAt": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "endsAt": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "productId": {
+                          "type": "string"
+                        },
+                        "currency": {
+                          "type": "string",
+                          "nullable": true,
+                          "enum": [
+                            "SGD"
+                          ]
+                        },
+                        "price": {
+                          "type": "number",
+                          "nullable": true
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "createdAt",
+                        "updatedAt",
+                        "productId"
+                      ]
+                    }
+                  },
+                  "reviews": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "createdAt": {
+                          "type": "string"
+                        },
+                        "updatedAt": {
+                          "type": "string"
+                        },
+                        "productId": {
+                          "type": "string"
+                        },
+                        "customerId": {
+                          "type": "string"
+                        },
+                        "status": {
+                          "type": "string",
+                          "nullable": true,
+                          "enum": [
+                            "approved",
+                            "spam",
+                            "deleted"
+                          ]
+                        },
+                        "ratings": {
+                          "type": "number",
+                          "nullable": true,
+                          "minimum": 1,
+                          "maximum": 5
+                        },
+                        "comments": {
+                          "type": "string",
+                          "nullable": true
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "createdAt",
+                        "updatedAt",
+                        "productId",
+                        "customerId"
+                      ]
+                    }
+                  },
+                  "attributes": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "createdAt": {
+                          "type": "string"
+                        },
+                        "updatedAt": {
+                          "type": "string"
+                        },
+                        "productId": {
+                          "type": "string"
+                        },
+                        "key": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "description": {
+                          "type": "string",
+                          "nullable": true
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "createdAt",
+                        "updatedAt",
+                        "productId",
+                        "key"
+                      ]
+                    }
+                  },
+                  "files": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "createdAt": {
+                          "type": "string"
+                        },
+                        "updatedAt": {
+                          "type": "string"
+                        },
+                        "deletedAt": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "type": {
+                          "type": "string",
+                          "nullable": true,
+                          "enum": [
+                            "filesystem",
+                            "s3"
+                          ]
+                        },
+                        "name": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "path": {
+                          "type": "string",
+                          "nullable": true
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "createdAt",
+                        "updatedAt"
+                      ]
+                    }
+                  },
+                  "eventLogs": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "createdAt": {
+                          "type": "string"
+                        },
+                        "updatedAt": {
+                          "type": "string"
+                        },
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "file.created",
+                            "file.updated",
+                            "file.deleted",
+                            "product.created",
+                            "product.updated",
+                            "product.deleted",
+                            "product.attribute.created",
+                            "product.attribute.updated",
+                            "product.attribute.deleted",
+                            "product.discount.created",
+                            "product.discount.deleted",
+                            "product.review.created",
+                            "product.review.updated",
+                            "product.review.deleted",
+                            "product.store.created",
+                            "product.store.deleted",
+                            "product.order.created",
+                            "product.file.created",
+                            "product.file.deleted",
+                            "store.created",
+                            "store.updated",
+                            "store.deleted",
+                            "store.product.created",
+                            "store.product.deleted",
+                            "store.review.created",
+                            "store.review.updated",
+                            "store.review.deleted",
+                            "store.file.created",
+                            "store.file.deleted",
+                            "order.created",
+                            "order.product.created",
+                            "order.history.created",
+                            "invoice.created",
+                            "invoice.updated",
+                            "invoice.deleted",
+                            "invoice.line_item.created",
+                            "invoice.line_item.updated",
+                            "invoice.line_item.deleted"
+                          ]
+                        },
+                        "dataId": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "sessionUserId": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "data": {
+                          "type": "string",
+                          "nullable": true
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "createdAt",
+                        "updatedAt",
+                        "type"
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "id",
+                  "createdAt",
+                  "updatedAt"
+                ]
+              }
+            },
+            "required": [
+              "data"
+            ]
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "data"
+        ]
+      },
+      "V1AdminProductsGet200Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "type": "string"
+                    },
+                    "deletedAt": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "expiresAt": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "type": {
+                      "type": "string",
+                      "nullable": true,
+                      "enum": [
+                        "basic",
+                        "group"
+                      ]
+                    },
+                    "category": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "name": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "summary": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "description": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "currency": {
+                      "type": "string",
+                      "nullable": true,
+                      "enum": [
+                        "SGD"
+                      ]
+                    },
+                    "price": {
+                      "type": "number",
+                      "nullable": true
+                    },
+                    "buyMinimumQuantity": {
+                      "type": "number",
+                      "nullable": true
+                    },
+                    "buyMaximumQuantity": {
+                      "type": "number",
+                      "nullable": true
+                    },
+                    "buyGroupOfQuantity": {
+                      "type": "number",
+                      "nullable": true
+                    },
+                    "sku": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "stockQuantity": {
+                      "type": "number",
+                      "nullable": true
+                    },
+                    "visiblility": {
+                      "type": "string",
+                      "nullable": true,
+                      "enum": [
+                        "visible",
+                        "hidden"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "createdAt",
+                    "updatedAt"
+                  ]
+                }
+              },
+              "count": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "data",
+              "count"
+            ]
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "data"
+        ]
+      },
+      "V1AdminProducts_id_PatchRequestBody": {
+        "type": "object",
+        "properties": {
+          "expiresAt": {
+            "type": "string",
+            "nullable": true
+          },
+          "category": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "summary": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "currency": {
+            "type": "string",
+            "nullable": true,
+            "enum": [
+              "SGD"
+            ]
+          },
+          "price": {
+            "type": "number",
+            "nullable": true
+          },
+          "buyMinimumQuantity": {
+            "type": "number",
+            "nullable": true
+          },
+          "buyMaximumQuantity": {
+            "type": "number",
+            "nullable": true
+          },
+          "buyGroupOfQuantity": {
+            "type": "number",
+            "nullable": true
+          },
+          "sku": {
+            "type": "string",
+            "nullable": true
+          },
+          "stockQuantity": {
+            "type": "number",
+            "nullable": true
+          },
+          "visiblility": {
+            "type": "string",
+            "nullable": true,
+            "enum": [
+              "visible",
+              "hidden"
+            ]
+          }
+        }
+      },
+      "V1AdminProducts_id_Patch200Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "data"
+        ]
+      },
+      "V1AdminProducts_id_Delete200Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "data"
+        ]
+      },
+      "V1AdminProducts_id_FilesImagePostRequestBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "upload": {
+            "type": "object",
+            "properties": {
+              "mime": {
+                "type": "string",
+                "enum": [
+                  "image/jpg",
+                  "image/png"
+                ]
+              },
+              "size": {
+                "type": "number"
+              },
+              "dataBase64": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "mime",
+              "size",
+              "dataBase64"
+            ]
+          }
+        },
+        "required": [
+          "upload"
+        ]
+      },
+      "V1AdminProducts_id_FilesImagePost200Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "fileId": {
+                "type": "string"
+              },
+              "productFileId": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "fileId",
+              "productFileId"
+            ]
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "data"
+        ]
+      },
+      "V1AdminProductsFiles_productFileId_Delete200Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "data"
+        ]
+      },
+      "V1AdminOrdersPostRequestBody": {
+        "type": "object",
+        "properties": {
+          "customerId": {
+            "type": "string"
+          },
+          "currency": {
+            "type": "string",
+            "nullable": true,
+            "enum": [
+              "SGD"
+            ]
+          },
+          "totalPrice": {
+            "type": "number",
+            "nullable": true
+          },
+          "totalDiscount": {
+            "type": "number",
+            "nullable": true
+          }
+        },
+        "required": [
+          "customerId"
+        ]
+      },
+      "V1AdminOrdersPost200Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "data"
+        ]
+      },
+      "V1AdminOrders_id_Get200Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "createdAt": {
+                    "type": "string"
+                  },
+                  "updatedAt": {
+                    "type": "string"
+                  },
+                  "customerId": {
+                    "type": "string"
+                  },
+                  "currency": {
+                    "type": "string",
+                    "nullable": true,
+                    "enum": [
+                      "SGD"
+                    ]
+                  },
+                  "totalPrice": {
+                    "type": "number",
+                    "nullable": true
+                  },
+                  "totalDiscount": {
+                    "type": "number",
+                    "nullable": true
+                  },
+                  "products": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "createdAt": {
+                          "type": "string"
+                        },
+                        "updatedAt": {
+                          "type": "string"
+                        },
+                        "deletedAt": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "expiresAt": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "type": {
+                          "type": "string",
+                          "nullable": true,
+                          "enum": [
+                            "basic",
+                            "group"
+                          ]
+                        },
+                        "category": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "name": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "summary": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "description": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "currency": {
+                          "type": "string",
+                          "nullable": true,
+                          "enum": [
+                            "SGD"
+                          ]
+                        },
+                        "price": {
+                          "type": "number",
+                          "nullable": true
+                        },
+                        "buyMinimumQuantity": {
+                          "type": "number",
+                          "nullable": true
+                        },
+                        "buyMaximumQuantity": {
+                          "type": "number",
+                          "nullable": true
+                        },
+                        "buyGroupOfQuantity": {
+                          "type": "number",
+                          "nullable": true
+                        },
+                        "sku": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "stockQuantity": {
+                          "type": "number",
+                          "nullable": true
+                        },
+                        "visiblility": {
+                          "type": "string",
+                          "nullable": true,
+                          "enum": [
+                            "visible",
+                            "hidden"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "createdAt",
+                        "updatedAt"
+                      ]
+                    }
+                  },
+                  "histories": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "createdAt": {
+                          "type": "string"
+                        },
+                        "updatedAt": {
+                          "type": "string"
+                        },
+                        "orderId": {
+                          "type": "string"
+                        },
+                        "status": {
+                          "type": "string",
+                          "nullable": true,
+                          "enum": [
+                            "pending",
+                            "processing",
+                            "onhold",
+                            "completed",
+                            "cancelled",
+                            "refunded",
+                            "failed"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "createdAt",
+                        "updatedAt",
+                        "orderId"
+                      ]
+                    }
+                  },
+                  "eventLogs": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "createdAt": {
+                          "type": "string"
+                        },
+                        "updatedAt": {
+                          "type": "string"
+                        },
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "file.created",
+                            "file.updated",
+                            "file.deleted",
+                            "product.created",
+                            "product.updated",
+                            "product.deleted",
+                            "product.attribute.created",
+                            "product.attribute.updated",
+                            "product.attribute.deleted",
+                            "product.discount.created",
+                            "product.discount.deleted",
+                            "product.review.created",
+                            "product.review.updated",
+                            "product.review.deleted",
+                            "product.store.created",
+                            "product.store.deleted",
+                            "product.order.created",
+                            "product.file.created",
+                            "product.file.deleted",
+                            "store.created",
+                            "store.updated",
+                            "store.deleted",
+                            "store.product.created",
+                            "store.product.deleted",
+                            "store.review.created",
+                            "store.review.updated",
+                            "store.review.deleted",
+                            "store.file.created",
+                            "store.file.deleted",
+                            "order.created",
+                            "order.product.created",
+                            "order.history.created",
+                            "invoice.created",
+                            "invoice.updated",
+                            "invoice.deleted",
+                            "invoice.line_item.created",
+                            "invoice.line_item.updated",
+                            "invoice.line_item.deleted"
+                          ]
+                        },
+                        "dataId": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "sessionUserId": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "data": {
+                          "type": "string",
+                          "nullable": true
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "createdAt",
+                        "updatedAt",
+                        "type"
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "id",
+                  "createdAt",
+                  "updatedAt",
+                  "customerId"
+                ]
+              }
+            },
+            "required": [
+              "data"
+            ]
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "data"
+        ]
+      },
+      "V1AdminOrdersGet200Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "type": "string"
+                    },
+                    "customerId": {
+                      "type": "string"
+                    },
+                    "currency": {
+                      "type": "string",
+                      "nullable": true,
+                      "enum": [
+                        "SGD"
+                      ]
+                    },
+                    "totalPrice": {
+                      "type": "number",
+                      "nullable": true
+                    },
+                    "totalDiscount": {
+                      "type": "number",
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "createdAt",
+                    "updatedAt",
+                    "customerId"
+                  ]
+                }
+              },
+              "count": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "data",
+              "count"
+            ]
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "data"
+        ]
+      },
+      "V1AdminStoresPostRequestBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressCity": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressCountry": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressState": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressLine1": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressLine2": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressPostalCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "openingHours": {
+            "type": "string",
+            "nullable": true
+          },
+          "contactNumbers": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "V1AdminStoresPost200Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "data"
+        ]
+      },
+      "V1AdminStores_id_Get200Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "createdAt": {
+                    "type": "string"
+                  },
+                  "updatedAt": {
+                    "type": "string"
+                  },
+                  "deletedAt": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "name": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "description": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "addressCity": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "addressCountry": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "addressState": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "addressLine1": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "addressLine2": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "addressPostalCode": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "openingHours": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "contactNumbers": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "products": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "createdAt": {
+                          "type": "string"
+                        },
+                        "updatedAt": {
+                          "type": "string"
+                        },
+                        "deletedAt": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "expiresAt": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "type": {
+                          "type": "string",
+                          "nullable": true,
+                          "enum": [
+                            "basic",
+                            "group"
+                          ]
+                        },
+                        "category": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "name": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "summary": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "description": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "currency": {
+                          "type": "string",
+                          "nullable": true,
+                          "enum": [
+                            "SGD"
+                          ]
+                        },
+                        "price": {
+                          "type": "number",
+                          "nullable": true
+                        },
+                        "buyMinimumQuantity": {
+                          "type": "number",
+                          "nullable": true
+                        },
+                        "buyMaximumQuantity": {
+                          "type": "number",
+                          "nullable": true
+                        },
+                        "buyGroupOfQuantity": {
+                          "type": "number",
+                          "nullable": true
+                        },
+                        "sku": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "stockQuantity": {
+                          "type": "number",
+                          "nullable": true
+                        },
+                        "visiblility": {
+                          "type": "string",
+                          "nullable": true,
+                          "enum": [
+                            "visible",
+                            "hidden"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "createdAt",
+                        "updatedAt"
+                      ]
+                    }
+                  },
+                  "reviews": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "createdAt": {
+                          "type": "string"
+                        },
+                        "updatedAt": {
+                          "type": "string"
+                        },
+                        "storeId": {
+                          "type": "string"
+                        },
+                        "customerId": {
+                          "type": "string"
+                        },
+                        "status": {
+                          "type": "string",
+                          "nullable": true,
+                          "enum": [
+                            "approved",
+                            "spam",
+                            "deleted"
+                          ]
+                        },
+                        "ratings": {
+                          "type": "number",
+                          "nullable": true,
+                          "minimum": 1,
+                          "maximum": 5
+                        },
+                        "comments": {
+                          "type": "string",
+                          "nullable": true
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "createdAt",
+                        "updatedAt",
+                        "storeId",
+                        "customerId"
+                      ]
+                    }
+                  },
+                  "files": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "createdAt": {
+                          "type": "string"
+                        },
+                        "updatedAt": {
+                          "type": "string"
+                        },
+                        "deletedAt": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "type": {
+                          "type": "string",
+                          "nullable": true,
+                          "enum": [
+                            "filesystem",
+                            "s3"
+                          ]
+                        },
+                        "name": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "path": {
+                          "type": "string",
+                          "nullable": true
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "createdAt",
+                        "updatedAt"
+                      ]
+                    }
+                  },
+                  "eventLogs": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "createdAt": {
+                          "type": "string"
+                        },
+                        "updatedAt": {
+                          "type": "string"
+                        },
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "file.created",
+                            "file.updated",
+                            "file.deleted",
+                            "product.created",
+                            "product.updated",
+                            "product.deleted",
+                            "product.attribute.created",
+                            "product.attribute.updated",
+                            "product.attribute.deleted",
+                            "product.discount.created",
+                            "product.discount.deleted",
+                            "product.review.created",
+                            "product.review.updated",
+                            "product.review.deleted",
+                            "product.store.created",
+                            "product.store.deleted",
+                            "product.order.created",
+                            "product.file.created",
+                            "product.file.deleted",
+                            "store.created",
+                            "store.updated",
+                            "store.deleted",
+                            "store.product.created",
+                            "store.product.deleted",
+                            "store.review.created",
+                            "store.review.updated",
+                            "store.review.deleted",
+                            "store.file.created",
+                            "store.file.deleted",
+                            "order.created",
+                            "order.product.created",
+                            "order.history.created",
+                            "invoice.created",
+                            "invoice.updated",
+                            "invoice.deleted",
+                            "invoice.line_item.created",
+                            "invoice.line_item.updated",
+                            "invoice.line_item.deleted"
+                          ]
+                        },
+                        "dataId": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "sessionUserId": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "data": {
+                          "type": "string",
+                          "nullable": true
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "createdAt",
+                        "updatedAt",
+                        "type"
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "id",
+                  "createdAt",
+                  "updatedAt"
+                ]
+              }
+            },
+            "required": [
+              "data"
+            ]
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "data"
+        ]
+      },
+      "V1AdminStoresGet200Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "type": "string"
+                    },
+                    "deletedAt": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "name": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "description": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "addressCity": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "addressCountry": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "addressState": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "addressLine1": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "addressLine2": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "addressPostalCode": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "openingHours": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "contactNumbers": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "createdAt",
+                    "updatedAt"
+                  ]
+                }
+              },
+              "count": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "data",
+              "count"
+            ]
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "data"
+        ]
+      },
+      "V1AdminStores_id_PatchRequestBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressCity": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressCountry": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressState": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressLine1": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressLine2": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressPostalCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "openingHours": {
+            "type": "string",
+            "nullable": true
+          },
+          "contactNumbers": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "V1AdminStores_id_Patch200Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "data"
+        ]
+      },
+      "V1AdminStores_id_Delete200Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "data"
+        ]
+      },
+      "V1AdminStores_id_FilesImagePostRequestBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "upload": {
+            "type": "object",
+            "properties": {
+              "mime": {
+                "type": "string",
+                "enum": [
+                  "image/jpg",
+                  "image/png"
+                ]
+              },
+              "size": {
+                "type": "number"
+              },
+              "dataBase64": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "mime",
+              "size",
+              "dataBase64"
+            ]
+          }
+        },
+        "required": [
+          "upload"
+        ]
+      },
+      "V1AdminStores_id_FilesImagePost200Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "fileId": {
+                "type": "string"
+              },
+              "storeFileId": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "fileId",
+              "storeFileId"
+            ]
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "data"
+        ]
+      },
+      "V1AdminStoresFiles_storeFileId_Delete200Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "data"
+        ]
+      },
+      "V1AdminConfigsPostRequestBody": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "enum": [
+              ""
+            ]
+          },
+          "value": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "key"
+        ]
+      },
+      "V1AdminConfigsPost200Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "data"
+        ]
+      },
+      "V1AdminConfigs_id_Get200Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "createdAt": {
+                    "type": "string"
+                  },
+                  "updatedAt": {
+                    "type": "string"
+                  },
+                  "key": {
+                    "type": "string",
+                    "enum": [
+                      ""
+                    ]
+                  },
+                  "value": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                },
+                "required": [
+                  "id",
+                  "createdAt",
+                  "updatedAt",
+                  "key"
+                ]
+              }
+            },
+            "required": [
+              "data"
+            ]
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "data"
+        ]
+      },
+      "V1AdminConfigsGet200Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "type": "string"
+                    },
+                    "key": {
+                      "type": "string",
+                      "enum": [
+                        ""
+                      ]
+                    },
+                    "value": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "createdAt",
+                    "updatedAt",
+                    "key"
+                  ]
+                }
+              },
+              "count": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "data",
+              "count"
+            ]
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "data"
+        ]
+      },
+      "V1AdminConfigs_id_PatchRequestBody": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "V1AdminConfigs_id_Patch200Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "data"
+        ]
+      },
+      "V1AdminEvent_logsPostRequestBody": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "file.created",
+              "file.updated",
+              "file.deleted",
+              "product.created",
+              "product.updated",
+              "product.deleted",
+              "product.attribute.created",
+              "product.attribute.updated",
+              "product.attribute.deleted",
+              "product.discount.created",
+              "product.discount.deleted",
+              "product.review.created",
+              "product.review.updated",
+              "product.review.deleted",
+              "product.store.created",
+              "product.store.deleted",
+              "product.order.created",
+              "product.file.created",
+              "product.file.deleted",
+              "store.created",
+              "store.updated",
+              "store.deleted",
+              "store.product.created",
+              "store.product.deleted",
+              "store.review.created",
+              "store.review.updated",
+              "store.review.deleted",
+              "store.file.created",
+              "store.file.deleted",
+              "order.created",
+              "order.product.created",
+              "order.history.created",
+              "invoice.created",
+              "invoice.updated",
+              "invoice.deleted",
+              "invoice.line_item.created",
+              "invoice.line_item.updated",
+              "invoice.line_item.deleted"
+            ]
+          },
+          "dataId": {
+            "type": "string",
+            "nullable": true
+          },
+          "sessionUserId": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "V1AdminEvent_logsPost200Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "data"
+        ]
+      },
+      "V1AdminEvent_logsGet200Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "file.created",
+                        "file.updated",
+                        "file.deleted",
+                        "product.created",
+                        "product.updated",
+                        "product.deleted",
+                        "product.attribute.created",
+                        "product.attribute.updated",
+                        "product.attribute.deleted",
+                        "product.discount.created",
+                        "product.discount.deleted",
+                        "product.review.created",
+                        "product.review.updated",
+                        "product.review.deleted",
+                        "product.store.created",
+                        "product.store.deleted",
+                        "product.order.created",
+                        "product.file.created",
+                        "product.file.deleted",
+                        "store.created",
+                        "store.updated",
+                        "store.deleted",
+                        "store.product.created",
+                        "store.product.deleted",
+                        "store.review.created",
+                        "store.review.updated",
+                        "store.review.deleted",
+                        "store.file.created",
+                        "store.file.deleted",
+                        "order.created",
+                        "order.product.created",
+                        "order.history.created",
+                        "invoice.created",
+                        "invoice.updated",
+                        "invoice.deleted",
+                        "invoice.line_item.created",
+                        "invoice.line_item.updated",
+                        "invoice.line_item.deleted"
+                      ]
+                    },
+                    "dataId": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "sessionUserId": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "data": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "createdAt",
+                    "updatedAt",
+                    "type"
+                  ]
+                }
+              },
+              "count": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "data",
+              "count"
+            ]
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "data"
+        ]
+      },
+      "V1AdminEvent_logsStatsGet200Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "createdAt": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "file.created",
+                        "file.updated",
+                        "file.deleted",
+                        "product.created",
+                        "product.updated",
+                        "product.deleted",
+                        "product.attribute.created",
+                        "product.attribute.updated",
+                        "product.attribute.deleted",
+                        "product.discount.created",
+                        "product.discount.deleted",
+                        "product.review.created",
+                        "product.review.updated",
+                        "product.review.deleted",
+                        "product.store.created",
+                        "product.store.deleted",
+                        "product.order.created",
+                        "product.file.created",
+                        "product.file.deleted",
+                        "store.created",
+                        "store.updated",
+                        "store.deleted",
+                        "store.product.created",
+                        "store.product.deleted",
+                        "store.review.created",
+                        "store.review.updated",
+                        "store.review.deleted",
+                        "store.file.created",
+                        "store.file.deleted",
+                        "order.created",
+                        "order.product.created",
+                        "order.history.created",
+                        "invoice.created",
+                        "invoice.updated",
+                        "invoice.deleted",
+                        "invoice.line_item.created",
+                        "invoice.line_item.updated",
+                        "invoice.line_item.deleted"
+                      ]
+                    },
+                    "count": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "createdAt",
+                    "type",
+                    "count"
+                  ]
+                }
+              },
+              "count": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "data",
+              "count"
+            ]
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "data"
+        ]
+      }
+    },
+    "parameters": {}
+  },
+  "paths": {
+    "/v1/admin/products": {
+      "post": {
+        "summary": "Create product",
+        "description": "Create product",
+        "tags": [
+          "Admin"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/V1AdminProductsPostRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Operation sucessful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V1AdminProductsPost200Response"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Get products",
+        "description": "Get products",
+        "tags": [
+          "Admin"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "ids",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "start",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "end",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "schema": {
+              "type": "number",
+              "nullable": true
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "number",
+              "nullable": true
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "sortColumn",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "id",
+                "createdAt",
+                "updatedAt",
+                "deletedAt",
+                "expiresAt",
+                "type",
+                "category",
+                "name",
+                "summary",
+                "description",
+                "currency",
+                "price",
+                "buyMinimumQuantity",
+                "buyMaximumQuantity",
+                "buyGroupOfQuantity",
+                "sku",
+                "stockQuantity",
+                "visiblility"
+              ]
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "sortBy",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "countOnly",
+            "schema": {
+              "type": "boolean",
+              "nullable": true
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "expand",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "stores",
+                  "discounts",
+                  "reviews",
+                  "attributes",
+                  "files",
+                  "eventLogs"
+                ]
+              }
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "type.eq",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "type.notEq",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "type.like",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "type.lt",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "type.lte",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "type.gt",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "type.gte",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "type.isNull",
+            "schema": {
+              "type": "boolean"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "type.isNotNull",
+            "schema": {
+              "type": "boolean"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "category.eq",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "category.notEq",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "category.like",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "category.lt",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "category.lte",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "category.gt",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "category.gte",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "category.isNull",
+            "schema": {
+              "type": "boolean"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "category.isNotNull",
+            "schema": {
+              "type": "boolean"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "name.eq",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "name.notEq",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "name.like",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "name.lt",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "name.lte",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "name.gt",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "name.gte",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "name.isNull",
+            "schema": {
+              "type": "boolean"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "name.isNotNull",
+            "schema": {
+              "type": "boolean"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "price.eq",
+            "schema": {
+              "type": "number"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "price.notEq",
+            "schema": {
+              "type": "number"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "price.lt",
+            "schema": {
+              "type": "number"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "price.lte",
+            "schema": {
+              "type": "number"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "price.gt",
+            "schema": {
+              "type": "number"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "price.gte",
+            "schema": {
+              "type": "number"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "price.isNull",
+            "schema": {
+              "type": "boolean"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "price.isNotNull",
+            "schema": {
+              "type": "boolean"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "sku.eq",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "sku.notEq",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "sku.like",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "sku.lt",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "sku.lte",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "sku.gt",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "sku.gte",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "sku.isNull",
+            "schema": {
+              "type": "boolean"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "sku.isNotNull",
+            "schema": {
+              "type": "boolean"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "stockQuantity.eq",
+            "schema": {
+              "type": "number"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "stockQuantity.notEq",
+            "schema": {
+              "type": "number"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "stockQuantity.lt",
+            "schema": {
+              "type": "number"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "stockQuantity.lte",
+            "schema": {
+              "type": "number"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "stockQuantity.gt",
+            "schema": {
+              "type": "number"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "stockQuantity.gte",
+            "schema": {
+              "type": "number"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "stockQuantity.isNull",
+            "schema": {
+              "type": "boolean"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "stockQuantity.isNotNull",
+            "schema": {
+              "type": "boolean"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "visiblility.eq",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "visiblility.notEq",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "visiblility.like",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "visiblility.lt",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "visiblility.lte",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "visiblility.gt",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "visiblility.gte",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "visiblility.isNull",
+            "schema": {
+              "type": "boolean"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "visiblility.isNotNull",
+            "schema": {
+              "type": "boolean"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation sucessful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V1AdminProductsGet200Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/admin/products/{id}": {
+      "get": {
+        "summary": "Get product",
+        "description": "Get product",
+        "tags": [
+          "Admin"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation sucessful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V1AdminProducts_id_Get200Response"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update product",
+        "description": "Update product",
+        "tags": [
+          "Admin"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/V1AdminProducts_id_PatchRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Operation sucessful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V1AdminProducts_id_Patch200Response"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete product",
+        "description": "Delete product",
+        "tags": [
+          "Admin"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation sucessful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V1AdminProducts_id_Delete200Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/admin/products/{id}/files/image": {
+      "post": {
+        "summary": "Create product image file",
+        "description": "Create product image file",
+        "tags": [
+          "Admin"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/V1AdminProducts_id_FilesImagePostRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Operation sucessful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V1AdminProducts_id_FilesImagePost200Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/admin/products/files/{productFileId}": {
+      "delete": {
+        "summary": "Delete product file",
+        "description": "Delete product file",
+        "tags": [
+          "Admin"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "productFileId",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation sucessful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V1AdminProductsFiles_productFileId_Delete200Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/admin/orders": {
+      "post": {
+        "summary": "Create order",
+        "description": "Create order",
+        "tags": [
+          "Admin"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/V1AdminOrdersPostRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Operation sucessful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V1AdminOrdersPost200Response"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Get orders",
+        "description": "Get orders",
+        "tags": [
+          "Admin"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "ids",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "start",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "end",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "schema": {
+              "type": "number",
+              "nullable": true
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "number",
+              "nullable": true
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "sortColumn",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "id",
+                "createdAt",
+                "updatedAt",
+                "customerId",
+                "currency",
+                "totalPrice",
+                "totalDiscount"
+              ]
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "sortBy",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "countOnly",
+            "schema": {
+              "type": "boolean",
+              "nullable": true
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "expand",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "products",
+                  "histories",
+                  "eventLogs"
+                ]
+              }
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation sucessful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V1AdminOrdersGet200Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/admin/orders/{id}": {
+      "get": {
+        "summary": "Get order",
+        "description": "Get order",
+        "tags": [
+          "Admin"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation sucessful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V1AdminOrders_id_Get200Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/admin/stores": {
+      "post": {
+        "summary": "Create store",
+        "description": "Create store",
+        "tags": [
+          "Admin"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/V1AdminStoresPostRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Operation sucessful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V1AdminStoresPost200Response"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Get stores",
+        "description": "Get stores",
+        "tags": [
+          "Admin"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "ids",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "start",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "end",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "schema": {
+              "type": "number",
+              "nullable": true
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "number",
+              "nullable": true
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "sortColumn",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "id",
+                "createdAt",
+                "updatedAt",
+                "deletedAt",
+                "name",
+                "description",
+                "addressCity",
+                "addressCountry",
+                "addressState",
+                "addressLine1",
+                "addressLine2",
+                "addressPostalCode",
+                "openingHours",
+                "contactNumbers"
+              ]
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "sortBy",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "countOnly",
+            "schema": {
+              "type": "boolean",
+              "nullable": true
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "expand",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "products",
+                  "reviews",
+                  "files",
+                  "eventLogs"
+                ]
+              }
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "name.eq",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "name.notEq",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "name.like",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "name.lt",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "name.lte",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "name.gt",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "name.gte",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "name.isNull",
+            "schema": {
+              "type": "boolean"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "name.isNotNull",
+            "schema": {
+              "type": "boolean"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation sucessful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V1AdminStoresGet200Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/admin/stores/{id}": {
+      "get": {
+        "summary": "Get store",
+        "description": "Get store",
+        "tags": [
+          "Admin"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation sucessful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V1AdminStores_id_Get200Response"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update store",
+        "description": "Update store",
+        "tags": [
+          "Admin"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/V1AdminStores_id_PatchRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Operation sucessful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V1AdminStores_id_Patch200Response"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete store",
+        "description": "Delete store",
+        "tags": [
+          "Admin"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation sucessful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V1AdminStores_id_Delete200Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/admin/stores/{id}/files/image": {
+      "post": {
+        "summary": "Create store image file",
+        "description": "Create store image file",
+        "tags": [
+          "Admin"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/V1AdminStores_id_FilesImagePostRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Operation sucessful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V1AdminStores_id_FilesImagePost200Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/admin/stores/files/{storeFileId}": {
+      "delete": {
+        "summary": "Delete store file",
+        "description": "Delete store file",
+        "tags": [
+          "Admin"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "storeFileId",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation sucessful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V1AdminStoresFiles_storeFileId_Delete200Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/admin/configs": {
+      "post": {
+        "summary": "Create config",
+        "description": "Create config",
+        "tags": [
+          "Admin"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/V1AdminConfigsPostRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Operation sucessful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V1AdminConfigsPost200Response"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Get configs",
+        "description": "Get configs",
+        "tags": [
+          "Admin"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "ids",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "start",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "end",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "schema": {
+              "type": "number",
+              "nullable": true
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "number",
+              "nullable": true
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "sortColumn",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "id",
+                "createdAt",
+                "updatedAt",
+                "key",
+                "value"
+              ]
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "sortBy",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "countOnly",
+            "schema": {
+              "type": "boolean",
+              "nullable": true
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "expand",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  ""
+                ]
+              }
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation sucessful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V1AdminConfigsGet200Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/admin/configs/{id}": {
+      "get": {
+        "summary": "Get config",
+        "description": "Get config",
+        "tags": [
+          "Admin"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation sucessful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V1AdminConfigs_id_Get200Response"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update config",
+        "description": "Update config",
+        "tags": [
+          "Admin"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/V1AdminConfigs_id_PatchRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Operation sucessful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V1AdminConfigs_id_Patch200Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/admin/event_logs": {
+      "post": {
+        "summary": "Create event log",
+        "description": "Create event log",
+        "tags": [
+          "Admin"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/V1AdminEvent_logsPostRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Operation sucessful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V1AdminEvent_logsPost200Response"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Get event logs",
+        "description": "Get event logs",
+        "tags": [
+          "Admin"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "ids",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "start",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "end",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "schema": {
+              "type": "number",
+              "nullable": true
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "number",
+              "nullable": true
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "sortColumn",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "id",
+                "createdAt",
+                "updatedAt",
+                "type",
+                "dataId",
+                "sessionUserId",
+                "data"
+              ]
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "sortBy",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "countOnly",
+            "schema": {
+              "type": "boolean",
+              "nullable": true
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "expand",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  ""
+                ]
+              }
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation sucessful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V1AdminEvent_logsGet200Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/admin/event_logs/stats": {
+      "get": {
+        "summary": "Get event logs statistics",
+        "description": "Get event logs statistics",
+        "tags": [
+          "Admin"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "interval",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "day"
+              ]
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "to",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "schema": {
+              "type": "number",
+              "nullable": true
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation sucessful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V1AdminEvent_logsStatsGet200Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
