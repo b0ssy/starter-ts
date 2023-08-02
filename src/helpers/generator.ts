@@ -62,7 +62,7 @@ export type GenerateOptions<TObject extends object> = {
   };
 };
 
-export const generate = async <TObject extends object = {}>(
+export const generate = async <TObject extends object = object>(
   options: GenerateOptions<TObject>
 ) => {
   const {
@@ -172,7 +172,8 @@ export class ${controllerName} extends Controller {
         .optional(),
       ${Object.keys(getManyWhereQueriesPick || {})
         .map((key) => {
-          const type = (getManyWhereQueriesPick as any)[key];
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          const type = ((getManyWhereQueriesPick || {}) as any)[key];
           return [
             `["${key}.eq"]: z.${type}().optional(),`,
             `["${key}.notEq"]: z.${type}().optional(),`,
@@ -260,7 +261,8 @@ export class ${controllerName} extends Controller {
     const results = await getMany(this.db.${tableNameQuery}, options, {
       ${Object.keys(getManyWhereQueriesPick ?? {})
         .map((key) => {
-          const type = (getManyWhereQueriesPick as any)[key];
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          const type = ((getManyWhereQueriesPick || {}) as any)[key];
           return `${key}: {
               eq: options?.["${key}.eq"],
               notEq: options?.["${key}.notEq"],
