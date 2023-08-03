@@ -11,7 +11,7 @@ import {
 } from "../../../helpers/api";
 
 export class GeneratedConfigAdminController extends Controller {
-  static expanded = zConfig.extend({});
+  static expanded = zConfig.omit({}).extend({});
 
   static options = {
     createOne: zConfig.pick({
@@ -73,62 +73,79 @@ export class GeneratedConfigAdminController extends Controller {
 
   static useRoutes = (
     routes: Routes<GeneratedConfigAdminController>,
+    select?: {
+      createOne?: boolean;
+      getOne?: boolean;
+      getMany?: boolean;
+      updateOne?: boolean;
+    },
   ): Routes<GeneratedConfigAdminController> => {
-    routes.post("/v1/admin/configs", "Create config", {
-      tags: ["Admin"],
-      req: z.object({
-        body: GeneratedConfigAdminController.options.createOne,
-      }),
-      resSuccessBody: z.object({
-        id: z.string(),
-      }),
-      handler: async ({ ctl, body }) => {
-        const { id } = await ctl.createOne(body);
-        return { id };
-      },
-    });
-    routes.get("/v1/admin/configs/{id}", "Get config", {
-      tags: ["Admin"],
-      req: z.object({
-        params: z.object({
+    if (!select || select?.createOne) {
+      routes.post("/v1/admin/configs", "Create config", {
+        tags: ["Admin"],
+        req: z.object({
+          body: GeneratedConfigAdminController.options.createOne,
+        }),
+        resSuccessBody: z.object({
           id: z.string(),
         }),
-      }),
-      resSuccessBody: z.object({
-        data: GeneratedConfigAdminController.expanded,
-      }),
-      handler: async ({ ctl, params }) => {
-        const data = await ctl.getOne(params.id);
-        return { data };
-      },
-    });
-    routes.get("/v1/admin/configs", "Get configs", {
-      tags: ["Admin"],
-      req: z.object({
-        query: GeneratedConfigAdminController.options.getMany,
-      }),
-      resSuccessBody: z.object({
-        data: zConfig.array(),
-        count: z.number(),
-      }),
-      handler: async ({ ctl, query }) => {
-        const { data, count } = await ctl.getMany(query);
-        return { data, count };
-      },
-    });
-    routes.patch("/v1/admin/configs/{id}", "Update config", {
-      tags: ["Admin"],
-      req: z.object({
-        body: GeneratedConfigAdminController.options.updateOne,
-        params: z.object({
-          id: z.string(),
+        handler: async ({ ctl, body }) => {
+          const { id } = await ctl.createOne(body);
+          return { id };
+        },
+      });
+    }
+
+    if (!select || select?.getOne) {
+      routes.get("/v1/admin/configs/{id}", "Get config", {
+        tags: ["Admin"],
+        req: z.object({
+          params: z.object({
+            id: z.string(),
+          }),
         }),
-      }),
-      resSuccessBody: z.object({}),
-      handler: async ({ ctl, params, body }) => {
-        await ctl.updateOne(params.id, body);
-      },
-    });
+        resSuccessBody: z.object({
+          data: GeneratedConfigAdminController.expanded,
+        }),
+        handler: async ({ ctl, params }) => {
+          const data = await ctl.getOne(params.id);
+          return { data };
+        },
+      });
+    }
+
+    if (!select || select?.getMany) {
+      routes.get("/v1/admin/configs", "Get configs", {
+        tags: ["Admin"],
+        req: z.object({
+          query: GeneratedConfigAdminController.options.getMany,
+        }),
+        resSuccessBody: z.object({
+          data: zConfig.array(),
+          count: z.number(),
+        }),
+        handler: async ({ ctl, query }) => {
+          const { data, count } = await ctl.getMany(query);
+          return { data, count };
+        },
+      });
+    }
+
+    if (!select || select?.updateOne) {
+      routes.patch("/v1/admin/configs/{id}", "Update config", {
+        tags: ["Admin"],
+        req: z.object({
+          body: GeneratedConfigAdminController.options.updateOne,
+          params: z.object({
+            id: z.string(),
+          }),
+        }),
+        resSuccessBody: z.object({}),
+        handler: async ({ ctl, params, body }) => {
+          await ctl.updateOne(params.id, body);
+        },
+      });
+    }
 
     return routes;
   };

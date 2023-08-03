@@ -29,6 +29,7 @@ export type GenerateOptions<TObject extends object> = {
   createOnePick?: { [k in keyof TObject]?: true };
   getOne?: boolean;
   getMany?: boolean;
+  getManyOmit?: { [k in keyof TObject]?: true };
   getManyWhereQueriesPick?: { [k in keyof TObject]?: "string" | "number" };
   updateOne?: boolean;
   updateOnePick?: { [k in keyof TObject]?: true };
@@ -74,6 +75,7 @@ export const generate = async <TObject extends object = object>(
     createOnePick,
     getOne,
     getMany,
+    getManyOmit,
     getManyWhereQueriesPick,
     updateOne,
     updateOnePick,
@@ -138,7 +140,10 @@ import {
 } from "${srcDir}/helpers/api";
 
 export class ${controllerName} extends Controller {
-  static expanded = ${objectSchemaName}.extend({
+  static expanded = ${objectSchemaName}.omit({
+    ${softDeleteOne ? "deletedAt: true," : ""}
+    ${getManyOmit ? Object.keys(getManyOmit).map((key) => `${key}: true,`) : ""}
+  }).extend({
     ${(expands || [])
       .map(
         (expand) =>
@@ -441,104 +446,132 @@ export class ${controllerName} extends Controller {
   ${
     routes
       ? `
-  static useRoutes = (routes: Routes<${controllerName}>): Routes<${controllerName}> => {
+  static useRoutes = (
+    routes: Routes<${controllerName}>,
+    select?: {
+      ${createOne ? "createOne?: boolean," : ""}
+      ${getOne ? "getOne?: boolean," : ""}
+      ${getMany ? "getMany?: boolean," : ""}
+      ${updateOne ? "updateOne?: boolean," : ""}
+      ${softDeleteOne || hardDeleteOne ? "deleteOne?: boolean," : ""}
+    },
+  ): Routes<${controllerName}> => {
     ${
       createOne
-        ? `routes.post("${routes.routePrefix}/${routes.routeNoun}", "Create ${
+        ? `
+        if (!select || select?.createOne) {
+          routes.post("${routes.routePrefix}/${routes.routeNoun}", "Create ${
             routes.singularNoun
           }", {
-        tags: [${(routes.tags || []).map((tag) => `"${tag}"`).join(", ")}],
-        req: z.object({
-          body: ${controllerName}.options.createOne,
-        }),
-        resSuccessBody: z.object({
-          id: z.string(),
-        }),
-        handler: async ({ ctl, body }) => {
-          const { id } = await ctl.createOne(body);
-          return { id };
-        },
-      });`
+            tags: [${(routes.tags || []).map((tag) => `"${tag}"`).join(", ")}],
+            req: z.object({
+              body: ${controllerName}.options.createOne,
+            }),
+            resSuccessBody: z.object({
+              id: z.string(),
+            }),
+            handler: async ({ ctl, body }) => {
+              const { id } = await ctl.createOne(body);
+              return { id };
+            },
+          });
+        }`
         : ""
     }
       ${
         getOne
-          ? `routes.get("${routes.routePrefix}/${
-              routes.routeNoun
-            }/{id}", "Get ${routes.singularNoun}", {
-          tags: [${(routes.tags || []).map((tag) => `"${tag}"`).join(", ")}],
-          req: z.object({
-            params: z.object({
-              id: z.string(),
-            }),
-          }),
-          resSuccessBody: z.object({
-            data: ${controllerName}.expanded,
-          }),
-          handler: async ({ ctl, params }) => {
-            const data = await ctl.getOne(params.id);
-            return { data };
-          },
-        });`
+          ? `
+          if (!select || select?.getOne) {
+            routes.get("${routes.routePrefix}/${routes.routeNoun}/{id}", "Get ${
+              routes.singularNoun
+            }", {
+              tags: [${(routes.tags || [])
+                .map((tag) => `"${tag}"`)
+                .join(", ")}],
+              req: z.object({
+                params: z.object({
+                  id: z.string(),
+                }),
+              }),
+              resSuccessBody: z.object({
+                data: ${controllerName}.expanded,
+              }),
+              handler: async ({ ctl, params }) => {
+                const data = await ctl.getOne(params.id);
+                return { data };
+              },
+            });
+          }`
           : ""
       }
       ${
         getMany
-          ? `routes.get("${routes.routePrefix}/${routes.routeNoun}", "Get ${
-              routes.pluralNoun
-            }", {
-          tags: [${(routes.tags || []).map((tag) => `"${tag}"`).join(", ")}],
-          req: z.object({
-            query: ${controllerName}.options.getMany,
-          }),
-          resSuccessBody: z.object({
-            data: ${objectSchemaName}.array(),
-            count: z.number(),
-          }),
-          handler: async ({ ctl, query }) => {
-            const { data, count } = await ctl.getMany(query);
-            return { data, count };
-          },
-        });`
+          ? `
+          if (!select || select?.getMany) {
+              routes.get("${routes.routePrefix}/${routes.routeNoun}", "Get ${
+                routes.pluralNoun
+              }", {
+              tags: [${(routes.tags || [])
+                .map((tag) => `"${tag}"`)
+                .join(", ")}],
+              req: z.object({
+                query: ${controllerName}.options.getMany,
+              }),
+              resSuccessBody: z.object({
+                data: ${objectSchemaName}.array(),
+                count: z.number(),
+              }),
+              handler: async ({ ctl, query }) => {
+                const { data, count } = await ctl.getMany(query);
+                return { data, count };
+              },
+            });
+          }`
           : ""
       }
     ${
       updateOne
-        ? `routes.patch("${routes.routePrefix}/${
-            routes.routeNoun
-          }/{id}", "Update ${routes.singularNoun}", {
-        tags: [${(routes.tags || []).map((tag) => `"${tag}"`).join(", ")}],
-        req: z.object({
-          body: ${controllerName}.options.updateOne,
-          params: z.object({
-            id: z.string(),
-          }),
-        }),
-        resSuccessBody: z.object({}),
-        handler: async ({ ctl, params, body }) => {
-          await ctl.updateOne(params.id, body);
-        },
-      });`
+        ? `
+        if (!select || select?.updateOne) {
+            routes.patch("${routes.routePrefix}/${
+              routes.routeNoun
+            }/{id}", "Update ${routes.singularNoun}", {
+            tags: [${(routes.tags || []).map((tag) => `"${tag}"`).join(", ")}],
+            req: z.object({
+              body: ${controllerName}.options.updateOne,
+              params: z.object({
+                id: z.string(),
+              }),
+            }),
+            resSuccessBody: z.object({}),
+            handler: async ({ ctl, params, body }) => {
+              await ctl.updateOne(params.id, body);
+            },
+          });
+        }`
         : ""
     }
     ${
       softDeleteOne || hardDeleteOne
-        ? `routes.delete("${routes.routePrefix}/${
-            routes.routeNoun
-          }/{id}", "Delete ${routes.singularNoun}", {
-        tags: [${(routes.tags || []).map((tag) => `"${tag}"`).join(", ")}],
-        req: z.object({
-          params: z.object({
-            id: z.string(),
-          }),
-        }),
-        resSuccessBody: z.object({}),
-        handler: async ({ ctl, params }) => {
-          await ctl.${
-            softDeleteOne ? "softDeleteOne" : "hardDeleteOne"
-          }(params.id);
-        },
-      });`
+        ? `
+        if (!select || select?.deleteOne) {
+            routes.delete("${routes.routePrefix}/${
+              routes.routeNoun
+            }/{id}", "Delete ${routes.singularNoun}", {
+            tags: [${(routes.tags || []).map((tag) => `"${tag}"`).join(", ")}],
+            req: z.object({
+              params: z.object({
+                id: z.string(),
+              }),
+            }),
+            resSuccessBody: z.object({}),
+            handler: async ({ ctl, params }) => {
+              await ctl.${
+                softDeleteOne ? "softDeleteOne" : "hardDeleteOne"
+              }(params.id);
+            },
+          });
+        }`
         : ""
     }
     return routes;

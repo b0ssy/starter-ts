@@ -5,7 +5,7 @@ import { zEventLog, EventLog } from "../../../data/db";
 import { zGetManyOptions, getMany, createOne } from "../../../helpers/api";
 
 export class GeneratedEventLogAdminController extends Controller {
-  static expanded = zEventLog.extend({});
+  static expanded = zEventLog.omit({}).extend({});
 
   static options = {
     createOne: zEventLog.pick({
@@ -42,35 +42,44 @@ export class GeneratedEventLogAdminController extends Controller {
 
   static useRoutes = (
     routes: Routes<GeneratedEventLogAdminController>,
-  ): Routes<GeneratedEventLogAdminController> => {
-    routes.post("/v1/admin/event_logs", "Create event log", {
-      tags: ["Admin"],
-      req: z.object({
-        body: GeneratedEventLogAdminController.options.createOne,
-      }),
-      resSuccessBody: z.object({
-        id: z.string(),
-      }),
-      handler: async ({ ctl, body }) => {
-        const { id } = await ctl.createOne(body);
-        return { id };
-      },
-    });
+    select?: {
+      createOne?: boolean;
 
-    routes.get("/v1/admin/event_logs", "Get event logs", {
-      tags: ["Admin"],
-      req: z.object({
-        query: GeneratedEventLogAdminController.options.getMany,
-      }),
-      resSuccessBody: z.object({
-        data: zEventLog.array(),
-        count: z.number(),
-      }),
-      handler: async ({ ctl, query }) => {
-        const { data, count } = await ctl.getMany(query);
-        return { data, count };
-      },
-    });
+      getMany?: boolean;
+    },
+  ): Routes<GeneratedEventLogAdminController> => {
+    if (!select || select?.createOne) {
+      routes.post("/v1/admin/event_logs", "Create event log", {
+        tags: ["Admin"],
+        req: z.object({
+          body: GeneratedEventLogAdminController.options.createOne,
+        }),
+        resSuccessBody: z.object({
+          id: z.string(),
+        }),
+        handler: async ({ ctl, body }) => {
+          const { id } = await ctl.createOne(body);
+          return { id };
+        },
+      });
+    }
+
+    if (!select || select?.getMany) {
+      routes.get("/v1/admin/event_logs", "Get event logs", {
+        tags: ["Admin"],
+        req: z.object({
+          query: GeneratedEventLogAdminController.options.getMany,
+        }),
+        resSuccessBody: z.object({
+          data: zEventLog.array(),
+          count: z.number(),
+        }),
+        handler: async ({ ctl, query }) => {
+          const { data, count } = await ctl.getMany(query);
+          return { data, count };
+        },
+      });
+    }
 
     return routes;
   };
