@@ -3,6 +3,7 @@ dotenv.config(); // Remember to call this at the top to load .env file!
 
 import { Command } from "commander";
 
+import { version } from "./package.json";
 import init from "./src/apps/init";
 import run from "./src/apps/run";
 import listConfig from "./src/apps/list-config";
@@ -14,13 +15,31 @@ const LOG = new Logger("index");
 
 const program = new Command();
 
-program.name("backend").description("Backend service").version("0.1.0");
+program.name("backend");
+program.description("Backend service");
+program.version(version);
 
 program
   .command("init")
   .description("Initialize server configurations")
-  .action(() => {
-    init();
+  .option(
+    "-c, --create",
+    "Flag to create .env (or .env.test, if --test is specified) environment file. Will throw error if file already exists."
+  )
+  .option(
+    "-t, --test",
+    "Flag to indicate generation of unit test environment file"
+  )
+  .option(
+    "-k, --key-dir <path>",
+    "Directory to create default RSA key pair files"
+  )
+  .action((options) => {
+    init({
+      create: !!options.create,
+      keyDir: options.keyDir,
+      test: !!options.test,
+    });
   });
 program
   .command("run")

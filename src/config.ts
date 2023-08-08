@@ -9,7 +9,7 @@ export const SERVICE_NAME = "backend";
 
 export const zEnv = z.object({
   // Node environment
-  NODE_ENV: z.enum(["local", "test", "dev", "stage", "prod"]),
+  NODE_ENV: z.enum(["local", "test", "dev", "stage", "prod"]).default("local"),
   isNodeEnv: z.function().args(z.string().array()).returns(z.boolean()),
 
   // Log directory
@@ -24,9 +24,9 @@ export const zEnv = z.object({
   // Database
   DB_HOST: z.string().default("127.0.0.1"),
   DB_PORT: z.coerce.number().default(20000),
-  DB_DATABASE: z.string(),
-  DB_USER: z.string(),
-  DB_PASSWORD: z.string(),
+  DB_DATABASE: z.string().default(""),
+  DB_USER: z.string().default(""),
+  DB_PASSWORD: z.string().default(""),
 
   // Server
   SERVER_HOSTNAME: z.string().default("0.0.0.0"),
