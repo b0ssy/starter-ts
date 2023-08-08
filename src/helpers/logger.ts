@@ -33,7 +33,7 @@ export class Logger {
   log(
     data: string,
     reason?: string | object | unknown,
-    options?: { error?: boolean }
+    options?: { error?: boolean },
   ) {
     const now = moment();
     data = `${now.format("YYYY-MM-DDTHH:mm:ss.SSSZ")} ${data}${
@@ -50,7 +50,7 @@ export class Logger {
             if (err) {
               console.error(`Failed to write log file: ${err}`);
             }
-          }
+          },
         );
       });
     if (!this.logToFileOnly) {

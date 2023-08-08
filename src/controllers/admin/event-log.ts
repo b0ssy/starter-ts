@@ -23,7 +23,7 @@ export class EventLogAdminController extends GeneratedEventLogAdminController {
   };
 
   getStats = async (
-    options: z.infer<typeof EventLogAdminController.options.getStats>
+    options: z.infer<typeof EventLogAdminController.options.getStats>,
   ) => {
     const interval = options.interval ?? "day";
     const offset = Math.floor(options.offset ?? 0);
@@ -34,8 +34,8 @@ export class EventLogAdminController extends GeneratedEventLogAdminController {
       .select(
         this.db.knex.raw(
           '*, date_trunc(?, "createdAt" + interval \'1 minute\' * ?) AS "createdAtAdjusted"',
-          [interval, offset]
-        )
+          [interval, offset],
+        ),
       )
       .as("event_log");
     if (options.from) {
@@ -58,8 +58,8 @@ export class EventLogAdminController extends GeneratedEventLogAdminController {
         >(
           this.db.knex.raw(
             '"createdAtAdjusted" + interval \'1 minute\' * ? AS "createdAt", type, COUNT(id) as count',
-            [-offset]
-          )
+            [-offset],
+          ),
         )
         .from(subQuery)
         .groupBy("createdAtAdjusted", "type")

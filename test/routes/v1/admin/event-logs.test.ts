@@ -13,7 +13,7 @@ describe("GET /v1/admin/event_logs", () => {
 
     const res = await apis.admin.v1AdminEventLogsGet(
       {},
-      mockAdmin().axiosConfig
+      mockAdmin().axiosConfig,
     );
     expect(res.status).toBe(200);
     expect(res.data.data.data.length).toBe(1);

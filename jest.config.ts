@@ -151,10 +151,7 @@ export default {
   // testLocationInResults: false,
 
   // The glob patterns Jest uses to detect test files
-  testMatch: [
-    "**/build/test/**/*.[jt]s?(x)",
-    "**/?(*.)+(spec|test).[tj]s?(x)"
-  ],
+  testMatch: ["**/build/test/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[tj]s?(x)"],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
   testPathIgnorePatterns: [
@@ -163,7 +160,7 @@ export default {
     "\\\\build\\\\test\\\\global-setup.js",
     "\\\\build\\\\test\\\\global-teardown.js",
     "\\\\build\\\\test\\\\helpers.js",
-    "\\\\build\\\\test\\\\mock\\\\auth.js"
+    "\\\\build\\\\test\\\\mock\\\\auth.js",
   ],
 
   // The regexp pattern or array of patterns that Jest uses to detect test files

@@ -92,7 +92,7 @@ export const makeApi = <
   TDeleteManyQueryRequest extends AnyZodObject,
   TDeleteManyParamsRequest extends AnyZodObject,
   TDeleteManyHeadersRequest extends AnyZodObject,
-  TDeleteManyResponse extends AnyZodObject
+  TDeleteManyResponse extends AnyZodObject,
 >(options: {
   createOneRequest?: ZodObject<{
     body?: TCreateOneBodyRequest;
@@ -206,7 +206,7 @@ export const makeApi = <
 export const buildWhereQuery = <TRecord extends object, TResult>(
   query: Knex.QueryBuilder<TRecord, TResult>,
   column: string,
-  whereQuery: WhereQuery
+  whereQuery: WhereQuery,
 ) => {
   query.where((builder) => {
     if (whereQuery.eq) {
@@ -249,11 +249,11 @@ export const buildWhereQuery = <TRecord extends object, TResult>(
 export const getMany = async <
   TRecord extends object,
   TResult,
-  TOptions extends GetManyOptions
+  TOptions extends GetManyOptions,
 >(
   query: Knex.QueryBuilder<TRecord, TResult>,
   options?: TOptions,
-  whereQueries?: { [k in keyof TRecord]?: WhereQuery | undefined }
+  whereQueries?: { [k in keyof TRecord]?: WhereQuery | undefined },
 ) => {
   query.select();
   if (whereQueries) {
@@ -277,14 +277,14 @@ export const getMany = async <
   if (!options?.countOnly) {
     query.orderBy(
       options?.sortColumn ?? "createdAt",
-      options?.sortBy ?? "desc"
+      options?.sortBy ?? "desc",
     );
   }
   if (options?.offset !== undefined) {
     if (options.offset < 0) {
       throw new BadRequestError(
         "Please specify a valid offset (must be >=0)",
-        "invalid_offset"
+        "invalid_offset",
       );
     }
     query.offset(options.offset);
@@ -293,12 +293,12 @@ export const getMany = async <
     if (options.limit < 0) {
       throw new BadRequestError(
         "Please specify a valid limit (must be >=0)",
-        "invalid_limit"
+        "invalid_limit",
       );
     } else if (options.limit > MAX_LIMIT) {
       throw new BadRequestError(
         `Please specify a valid limit (must be <=${MAX_LIMIT})`,
-        "invalid_limit"
+        "invalid_limit",
       );
     }
     query.limit(options.limit);
@@ -317,7 +317,7 @@ export const getMany = async <
 
 export const joinWithExternal = async <
   TJoinRecord extends object,
-  TResultSchema extends AnyZodObject
+  TResultSchema extends AnyZodObject,
 >(options: {
   whereInPrimaryIds: string[];
   secondaryTableName: string;
@@ -330,7 +330,7 @@ export const joinWithExternal = async <
   const ret = await options.compositeTableQuery
     .select(
       `${options.secondaryTableName}.*`,
-      `${options.compositeTableName}.${options.compositeTablePrimaryJoinColumn}`
+      `${options.compositeTableName}.${options.compositeTablePrimaryJoinColumn}`,
     )
     .whereIn(options.compositeTablePrimaryJoinColumn, options.whereInPrimaryIds)
     .whereNull(`${options.secondaryTableName}.deletedAt`)
@@ -338,7 +338,7 @@ export const joinWithExternal = async <
       options.secondaryTableName,
       `${options.compositeTableName}.${options.compositeTableSecondaryJoinColumn}`,
       "=",
-      `${options.secondaryTableName}.id`
+      `${options.secondaryTableName}.id`,
     );
   return options.resultSchema.array().parse(ret);
 };
@@ -350,7 +350,7 @@ export const createOne = async <TRecord extends { id: string }>(
     ?
         | Knex.ResolveTableType<TRecord, "insert">
         | ReadonlyArray<Knex.ResolveTableType<TRecord, "insert">>
-    : Knex.DbRecordArr<TRecord> | ReadonlyArray<Knex.DbRecordArr<TRecord>>
+    : Knex.DbRecordArr<TRecord> | ReadonlyArray<Knex.DbRecordArr<TRecord>>,
 ) => {
   const ret = await query.insert(data).returning("*");
   if (!ret.length) {
@@ -361,13 +361,13 @@ export const createOne = async <TRecord extends { id: string }>(
 
 // Update one row
 export const updateOne = async <
-  TRecord extends { id: string; deletedAt?: Date | null }
+  TRecord extends { id: string; deletedAt?: Date | null },
 >(
   query: Knex.QueryBuilder<TRecord>,
   id: string,
   data: TRecord extends Knex.CompositeTableType<unknown>
     ? Knex.ResolveTableType<TRecord, "update">
-    : Knex.DbRecordArr<TRecord>
+    : Knex.DbRecordArr<TRecord>,
 ) => {
   if (!Object.keys(data).length) {
     throw new EmptyUpdateError();
@@ -385,10 +385,10 @@ export const updateOne = async <
 
 // Soft delete one row by setting "deletedAt" date column
 export const softDeleteOne = async <
-  TRecord extends { id: string; deletedAt?: Date | null }
+  TRecord extends { id: string; deletedAt?: Date | null },
 >(
   query: Knex.QueryBuilder<TRecord>,
-  id: string
+  id: string,
 ) => {
   const ret = await query
     .where("id", id)
@@ -404,7 +404,7 @@ export const softDeleteOne = async <
 // Hard delete one row, deleting from table permanently
 export const hardDeleteOne = async <TRecord extends { id: string }>(
   query: Knex.QueryBuilder<TRecord>,
-  id: string
+  id: string,
 ) => {
   const ret = await query.where("id", id).delete().returning("*");
   if (!ret.length) {
@@ -430,7 +430,7 @@ export const sendSuccess = <T>(
     code?: string;
     message?: string;
     status?: number;
-  }
+  },
 ) => {
   // Ensure 2xx status code
   if (options?.status && (options.status < 200 || options.status > 299)) {
@@ -449,7 +449,7 @@ export const sendError = (
   res: Response,
   status: number,
   code: string,
-  message?: string
+  message?: string,
 ) => {
   // Ensure not 2xx status code
   if (status >= 200 && status <= 299) {

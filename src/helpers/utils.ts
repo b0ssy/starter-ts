@@ -12,7 +12,7 @@ export const wait = async (milliseconds: number) => {
 
 export const runForAtLeast = async <T>(
   milliseconds: number,
-  fn: () => Promise<T>
+  fn: () => Promise<T>,
 ) => {
   const start = Date.now();
   let caughtErr: Error | null = null;
@@ -34,27 +34,27 @@ export const runForAtLeast = async <T>(
 export const isValidEmail = (email: string) => {
   return !!email.match(
     // eslint-disable-next-line
-    /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g
+    /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g,
   );
 };
 
 export const md5 = (
   plaintext: BinaryLike,
-  encoding: BinaryToTextEncoding = "base64"
+  encoding: BinaryToTextEncoding = "base64",
 ) => {
   return crypto.createHash("md5").update(plaintext).digest(encoding);
 };
 
 export const sha256 = (
   plaintext: BinaryLike,
-  encoding: BinaryToTextEncoding = "base64"
+  encoding: BinaryToTextEncoding = "base64",
 ) => {
   return crypto.createHash("sha256").update(plaintext).digest(encoding);
 };
 
 export const generateRandomKey = (
   size = 32,
-  encoding: BufferEncoding = "base64"
+  encoding: BufferEncoding = "base64",
 ) => {
   return crypto.randomBytes(size).toString(encoding);
 };
@@ -82,7 +82,7 @@ export const generateRSAKeys = async (): Promise<{
           reject(err);
         }
         resolve({ privateKey, publicKey });
-      }
+      },
     );
   });
 };
@@ -93,20 +93,20 @@ export const rsaPublicEncrypt = (publicKey: KeyLike, plain: Buffer): Buffer => {
       key: publicKey,
       padding: crypto.constants.RSA_PKCS1_PADDING,
     },
-    plain
+    plain,
   );
 };
 
 export const rsaPrivateDecrypt = (
   privateKey: KeyLike,
-  cipher: Buffer
+  cipher: Buffer,
 ): Buffer => {
   return crypto.privateDecrypt(
     {
       key: privateKey,
       padding: crypto.constants.RSA_PKCS1_PADDING,
     },
-    cipher
+    cipher,
   );
 };
 
@@ -115,7 +115,7 @@ export const isJsonMime = (mime: string) => {
   const jsonMime = new RegExp(
     // eslint-disable-next-line
     "^(application/json|[^;/ \t]+/[^;/ \t]+[+]json)[ \t]*(;.*)?$",
-    "i"
+    "i",
   );
   return (
     mime !== null &&

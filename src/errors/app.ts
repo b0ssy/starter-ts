@@ -6,7 +6,7 @@ export class AppError extends Error {
 
   constructor(status: number, code: string, message?: string) {
     super(
-      `${code.toLowerCase()}${message !== undefined ? `: ${message}` : ""}`
+      `${code.toLowerCase()}${message !== undefined ? `: ${message}` : ""}`,
     );
 
     this.status = status;

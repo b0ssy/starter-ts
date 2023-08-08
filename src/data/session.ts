@@ -63,7 +63,7 @@ export const getSessionOrThrow = (res: Response) => {
 export const decodeSession = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   try {
     // Decode all authentication methods
@@ -121,7 +121,7 @@ export const decode = <
   TBody extends AnyZodObject,
   TQuery extends AnyZodObject,
   TParams extends AnyZodObject,
-  THeaders extends AnyZodObject
+  THeaders extends AnyZodObject,
 >(
   req: Request,
   res: Response,
@@ -130,7 +130,7 @@ export const decode = <
     query?: TQuery;
     params?: TParams;
     headers?: THeaders;
-  }>
+  }>,
 ): {
   body: z.infer<TBody>;
   query: z.infer<TQuery>;
@@ -154,7 +154,7 @@ export const decode = <
         `Check your request body: ${parsed.error.errors
           .map((e) => `[${e.path}] ${e.message}`)
           .join(", ")}`,
-        "invalid_request_body"
+        "invalid_request_body",
       );
     }
     body = parsed.data;
@@ -166,7 +166,7 @@ export const decode = <
         `Check your request query: ${parsed.error.errors
           .map((e) => `[${e.path}] ${e.message}`)
           .join(", ")}`,
-        "invalid_request_query"
+        "invalid_request_query",
       );
     }
     query = parsed.data;
@@ -178,7 +178,7 @@ export const decode = <
         `Check your request params: ${parsed.error.errors
           .map((e) => `[${e.path}] ${e.message}`)
           .join(", ")}`,
-        "invalid_request_params"
+        "invalid_request_params",
       );
     }
     params = parsed.data;
@@ -190,7 +190,7 @@ export const decode = <
         `Check your request headers: ${parsed.error.errors
           .map((e) => `[${e.path}] ${e.message}`)
           .join(", ")}`,
-        "invalid_request_headers"
+        "invalid_request_headers",
       );
     }
     headers = parsed.data;
@@ -214,12 +214,12 @@ export const decodeJWTPayload = (accessToken: string): JWTPayload => {
     if (err instanceof jwt.TokenExpiredError) {
       throw new NotAuthorizedError(
         "Please provide a valid access token",
-        "expired_access_token"
+        "expired_access_token",
       );
     } else {
       throw new NotAuthorizedError(
         "Please provide a valid access token",
-        "invalid_access_token"
+        "invalid_access_token",
       );
     }
   }
@@ -252,7 +252,7 @@ export const authorize =
       // Check role names
       if (roleNames) {
         const requiredRoles = session.jwtPayload?.roleNames?.filter(
-          (roleName) => roleNames.includes(roleName)
+          (roleName) => roleNames.includes(roleName),
         );
         if (!requiredRoles || requiredRoles.length <= 0) {
           throw new NotAuthorizedError();

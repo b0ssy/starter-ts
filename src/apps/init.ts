@@ -14,15 +14,15 @@ export class InitApp extends App {
       .description("Initialize server configurations")
       .option(
         "-c, --create",
-        "Flag to create .env (or .env.test, if --test is specified) environment file. Will throw error if file already exists."
+        "Flag to create .env (or .env.test, if --test is specified) environment file. Will throw error if file already exists.",
       )
       .option(
         "-t, --test",
-        "Flag to indicate generation of unit test environment file"
+        "Flag to indicate generation of unit test environment file",
       )
       .option(
         "-k, --key-dir <path>",
-        "Directory to create default RSA key pair files"
+        "Directory to create default RSA key pair files",
       )
       .action((options) => {
         this.execute({

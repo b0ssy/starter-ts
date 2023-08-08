@@ -38,7 +38,7 @@ export class Auth {
     return new AdminApi(
       this.createApiConfiguration(),
       undefined,
-      this.createAxiosInstance()
+      this.createAxiosInstance(),
     );
   }
 
@@ -46,7 +46,7 @@ export class Auth {
     return new AuthenticationApi(
       this.createApiConfiguration(),
       undefined,
-      this.createAxiosInstance()
+      this.createAxiosInstance(),
     );
   }
 }

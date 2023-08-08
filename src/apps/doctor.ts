@@ -31,7 +31,7 @@ export class DoctorApp extends App {
           .select("id")
           .first()
           .catch(() => null)) !== null,
-        "Failed to connect. Please ensure migrations are applied."
+        "Failed to connect. Please ensure migrations are applied.",
       );
 
       // Ensure updated to latest knex migrations
@@ -45,7 +45,7 @@ export class DoctorApp extends App {
               .orderBy("id", "desc")
               .first()
           )?.name === latestKnexMigration,
-          "Please update to latest knex migration"
+          "Please update to latest knex migration",
         );
       } else {
         await check(false, "No knex migration files");
@@ -62,7 +62,7 @@ export class DoctorApp extends App {
       await check(!!ENV.AUTH_URL, "Please initialize AUTH_URL");
       await check(
         !!ENV.AUTH_ROOT_API_KEY,
-        "Please initialize AUTH_ROOT_API_KEY"
+        "Please initialize AUTH_ROOT_API_KEY",
       );
     });
   }

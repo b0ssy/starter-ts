@@ -51,7 +51,7 @@ export class S3Public {
   async put(
     key: string,
     object: string | Uint8Array | Buffer | undefined,
-    options?: PutOptions
+    options?: PutOptions,
   ) {
     const cmd = new PutObjectCommand({
       Bucket: this.options.bucketName,

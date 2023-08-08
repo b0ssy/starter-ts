@@ -16,7 +16,7 @@ export const DROP_ON_UPDATE_TIMESTAMP_FUNCTION = `DROP FUNCTION onUpdateTimestam
 export const useUuidAsPrimaryKey = (
   knex: Knex,
   table: Knex.CreateTableBuilder,
-  columnName = "id"
+  columnName = "id",
 ) => table.uuid(columnName).primary().defaultTo(knex.raw("gen_random_uuid()"));
 
 // Add "createdAt" and "updatedAt" timestamp columns

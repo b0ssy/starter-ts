@@ -18,7 +18,7 @@ export const defaultApiConfig = {
   isJsonMime: (mime: string) => {
     const jsonMime = new RegExp(
       "^(application/json|[^;/ \t]+/[^;/ \t]+[+]json)[ \t]*(;.*)?$",
-      "i"
+      "i",
     );
     return (
       mime !== null &&
@@ -61,7 +61,7 @@ export const createAccessToken = (
   options?: {
     roleNames?: string[];
     attributes?: { [k: string]: string };
-  }
+  },
 ) => {
   const payload: JWTPayload = {
     userId,

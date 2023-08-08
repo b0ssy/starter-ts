@@ -9,7 +9,7 @@ import chalk from "chalk";
  */
 export const check = async (
   callback: (() => Promise<void>) | boolean,
-  message: string
+  message: string,
 ) => {
   if (typeof callback === "boolean" && !callback) {
     throw new Error(message);
@@ -29,7 +29,7 @@ export const check = async (
  */
 export const checkGroup = async (
   message: string,
-  callback: () => Promise<void>
+  callback: () => Promise<void>,
 ) => {
   try {
     await callback();
@@ -45,7 +45,7 @@ export const checkGroup = async (
  * @param config Check configuration
  */
 export const checkConfig = async (
-  groups: [string, [(() => Promise<void>) | boolean, string][]][]
+  groups: [string, [(() => Promise<void>) | boolean, string][]][],
 ) => {
   for (const group of groups) {
     await checkGroup(group[0], async () => {

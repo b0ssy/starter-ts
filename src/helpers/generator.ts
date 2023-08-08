@@ -64,7 +64,7 @@ export type GenerateOptions<TObject extends object> = {
 };
 
 export const generate = async <TObject extends object = object>(
-  options: GenerateOptions<TObject>
+  options: GenerateOptions<TObject>,
 ) => {
   const {
     outputPath,
@@ -99,7 +99,7 @@ export const generate = async <TObject extends object = object>(
     if (expand.indirect) {
       if (!expand.indirect.joinTableNameQuery) {
         expand.indirect.joinTableNameQuery = `${camelCase(
-          expand.indirect.joinTableName
+          expand.indirect.joinTableName,
         )}()`;
       }
       if (!expand.indirect.joinPrimaryColumn) {
@@ -107,7 +107,7 @@ export const generate = async <TObject extends object = object>(
       }
       if (!expand.indirect.joinSecondaryColumn) {
         expand.indirect.joinSecondaryColumn = `${camelCase(
-          expand.indirect.tableName
+          expand.indirect.tableName,
         )}Id`;
       }
     }
@@ -147,7 +147,7 @@ export class ${controllerName} extends Controller {
     ${(expands || [])
       .map(
         (expand) =>
-          `${expand.name}: ${expand.objectSchemaName}.array().optional(),`
+          `${expand.name}: ${expand.objectSchemaName}.array().optional(),`,
       )
       .join("\n")}
     ${expandEventLogs ? "eventLogs: zEventLog.array().optional()," : ""}
@@ -229,7 +229,7 @@ export class ${controllerName} extends Controller {
       (created) =>
         `await this.logEvent("${created.prefix}.created", ret.${
           created.idName ?? "id"
-        }, ret);`
+        }, ret);`,
     )}
     return ret;
   };
@@ -332,7 +332,7 @@ export class ${controllerName} extends Controller {
       });
     }
             `
-            : ""
+            : "",
         )
         .join("\n")}
 
@@ -388,7 +388,7 @@ export class ${controllerName} extends Controller {
       (updated) =>
         `await this.logEvent("${updated.prefix}.updated", ret.${
           updated.idName ?? "id"
-        }, ret);`
+        }, ret);`,
     )}
     return ret;
   };
@@ -412,7 +412,7 @@ export class ${controllerName} extends Controller {
       (deleted) =>
         `await this.logEvent("${deleted.prefix}.deleted", ret.${
           deleted.idName ?? "id"
-        }, ret);`
+        }, ret);`,
     )}
     return ret;
   };
@@ -436,7 +436,7 @@ export class ${controllerName} extends Controller {
       (deleted) =>
         `await this.logEvent("${deleted.prefix}.deleted", ret.${
           deleted.idName ?? "id"
-        }, ret);`
+        }, ret);`,
     )}
     return ret;
   };

@@ -87,7 +87,7 @@ export class RunApp extends App {
     // Start server
     this.server = app.listen(ENV.SERVER_PORT, ENV.SERVER_HOSTNAME, () => {
       LOG.info(
-        `Started server: http://${ENV.SERVER_HOSTNAME}:${ENV.SERVER_PORT}`
+        `Started server: http://${ENV.SERVER_HOSTNAME}:${ENV.SERVER_PORT}`,
       );
     });
   }

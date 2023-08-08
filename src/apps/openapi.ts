@@ -17,7 +17,7 @@ export class OpenAPIApp extends App {
       .option(
         "-d, --dir <directory>",
         "Directory to generate OpenAPI documents and clients",
-        "./openapi"
+        "./openapi",
       )
       .action((options) => {
         this.execute({ dir: options.dir });
@@ -36,7 +36,7 @@ export class OpenAPIApp extends App {
     LOG.info(`Writing file: ${path}`);
     const generator = new OpenAPIGenerator(
       openApiRegistryV1.definitions,
-      "3.0.0"
+      "3.0.0",
     );
     const components = generator.generateDocument({
       info: {
@@ -56,7 +56,7 @@ export class OpenAPIApp extends App {
 
       const generator = new OpenAPIGenerator(
         openApiRegistryV1Internal.definitions,
-        "3.0.0"
+        "3.0.0",
       );
       const components = generator.generateDocument({
         info: {
