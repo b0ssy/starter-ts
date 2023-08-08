@@ -1,10 +1,10 @@
 import p from "path";
 import fs from "fs-extra";
-import chalk from "chalk";
 
 import { App, Command } from "./app";
 import { zEnv } from "../config";
 import { generateRandomKey } from "../helpers/utils";
+import { consoleError, consoleSuccess } from "../helpers/console";
 
 // Initialize application defaults
 export class InitApp extends App {
@@ -13,40 +13,21 @@ export class InitApp extends App {
       .command("init")
       .description("Initialize server configurations")
       .option(
-        "-c, --create",
-        "Flag to create .env (or .env.test, if --test is specified) environment file. Will throw error if file already exists.",
-      )
-      .option(
         "-t, --test",
-        "Flag to indicate generation of unit test environment file",
-      )
-      .option(
-        "-k, --key-dir <path>",
-        "Directory to create default RSA key pair files",
+        "Flag to indicate generation of unit test environment file"
       )
       .action((options) => {
-        this.execute({
-          create: !!options.create,
-          keyDir: options.keyDir,
-          test: !!options.test,
-        });
+        this.execute({ test: !!options.test });
       });
   }
 
-  async execute(options: {
-    create?: boolean;
-    keyDir?: string;
-    test?: boolean;
-  }) {
+  async execute(options: { test?: boolean }) {
     await this.createDefaultEnvVariables(options);
     console.log();
-    console.log(chalk.greenBright("✓ Initialized successfully"));
+    consoleSuccess("✓ Initialized successfully");
   }
 
-  async createDefaultEnvVariables(options: {
-    create?: boolean;
-    test?: boolean;
-  }) {
+  async createDefaultEnvVariables(options: { test?: boolean }) {
     console.log("✓ Generating env variables");
     const lines: string[] = [];
     let section = "";
@@ -79,17 +60,19 @@ export class InitApp extends App {
       lines.push("TEST_LOCALSTACK_SES_DIRECTORY=");
     }
 
-    // If creating .env file, ensure file do not exists
-    if (options.create) {
-      const path = `.env${options.test ? ".test" : ""}`;
-      if (await fs.exists(path)) {
-        throw new Error(`Environment file already exists: ${path}`);
-      }
+    // Create env file by default
+    // But if already exists, then print out to console
+    const envPath = `.env${options.test ? ".test" : ""}`;
+    const canWrite = !(await fs.exists(envPath));
+    if (canWrite) {
       lines.push("");
-      await fs.writeFile(path, lines.join("\n"));
+      await fs.writeFile(envPath, lines.join("\n"));
     }
     // Otherwise, print out
     else {
+      consoleError(
+        `Environment file "${envPath}" already exists, printing to console instead.`
+      );
       console.log("...");
       console.log(lines.join("\n"));
       console.log("...");
