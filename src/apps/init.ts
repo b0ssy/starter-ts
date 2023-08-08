@@ -1,10 +1,10 @@
 import p from "path";
 import fs from "fs-extra";
 
-import { App, Command } from "./app";
 import { zEnv } from "../config";
-import { generateRandomKey } from "../helpers/utils";
+import { App, Command } from "../helpers/app";
 import { consoleError, consoleSuccess } from "../helpers/console";
+import { generateRandomKey } from "../helpers/utils";
 
 // Initialize application defaults
 export class InitApp extends App {

@@ -1,5 +1,5 @@
-import { App, Command } from "./app";
 import { db } from "../data";
+import { App, Command } from "../helpers/app";
 
 // List database configurations
 export class ListConfigApp extends App {

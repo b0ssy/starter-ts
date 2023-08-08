@@ -2,8 +2,8 @@ import { OpenAPIGenerator } from "@asteasolutions/zod-to-openapi";
 import { promises as fs } from "fs";
 import p from "path";
 
-import { App, Command } from "./app";
 import { openApiRegistryV1, openApiRegistryV1Internal } from "../data";
+import { App, Command } from "../helpers/app";
 import { Logger } from "../helpers/logger";
 
 const LOG = new Logger("apps/openapi");

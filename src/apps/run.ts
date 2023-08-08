@@ -5,10 +5,10 @@ import helmet from "helmet";
 import cors from "cors";
 import bodyParser from "body-parser";
 
-import { App, Command } from "./app";
 import { ENV } from "../config";
 import { db } from "../data";
 import { mountRoutes } from "../routes";
+import { App, Command } from "../helpers/app";
 import { getLatestKnexMigration } from "../helpers/db";
 import { Logger } from "../helpers/logger";
 
