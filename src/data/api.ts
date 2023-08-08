@@ -7,7 +7,7 @@ import db, { EventLog } from "./db";
 import { Session, decode } from "./session";
 import { makeApiResponse, sendSuccess } from "../helpers/api";
 
-export type Tag = "Admin" | "ServiceProvider" | "Customer";
+export type Tag = "Admin";
 
 export const openApiRegistryV1 = new OpenAPIRegistry();
 export const openApiRegistryV1Internal = new OpenAPIRegistry();

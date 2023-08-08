@@ -5,6 +5,7 @@ import helmet from "helmet";
 import cors from "cors";
 import bodyParser from "body-parser";
 
+import { App, Command } from "./app";
 import { ENV } from "../config";
 import { db } from "../data";
 import { mountRoutes } from "../routes";
@@ -16,66 +17,86 @@ const LOG_ACCESS = new Logger("apps/run.access", {
   logToFileOnly: true,
 });
 
-// Global server instance
-let server: Server | null = null;
+// Log down system-wide exceptions and do not crash the app
+process.on("uncaughtException", (err) => {
+  LOG.error("Uncaught exception", {
+    message: err?.message ?? "",
+    stack: err?.stack ?? "",
+  });
+});
+process.on("unhandledRejection", (err) => {
+  console.error(err);
+  LOG.error("Unhandled rejection", { err });
+});
 
 // Run server
-export const execute = async () => {
-  // Create log directory
-  await fs.mkdir(ENV.LOG_DIRECTORY, { recursive: true });
+export class RunApp extends App {
+  server: Server | null = null;
 
-  // Check if latest knex migration is applied
-  // If not, show a warning but do not prevent server from running
-  const latestKnexMigration = await getLatestKnexMigration();
-  if (latestKnexMigration) {
-    const result = await db
-      .knexMigrations()
-      .select("name")
-      .orderBy("id", "desc")
-      .first();
-    if (result?.name !== latestKnexMigration) {
-      LOG.error("Latest knex migration not applied", {
-        db: result?.name,
-        latest: latestKnexMigration,
+  create(program: Command) {
+    program
+      .command("run")
+      .description("Run server")
+      .action(() => {
+        this.execute().finally(() => this.shutdown());
       });
-    }
-  } else {
-    // Should have knex migration files
-    LOG.warn("No knex migration files");
   }
 
-  // Create server
-  const app = express();
+  async execute() {
+    // Create log directory
+    await fs.mkdir(ENV.LOG_DIRECTORY, { recursive: true });
 
-  // Log accesses
-  app.use((req, res, next) => {
-    LOG_ACCESS.info(`${req.ip}, ${req.method}, ${req.path}`);
-    next();
-  });
+    // Check if latest knex migration is applied
+    // If not, show a warning but do not prevent server from running
+    const latestKnexMigration = await getLatestKnexMigration();
+    if (latestKnexMigration) {
+      const result = await db
+        .knexMigrations()
+        .select("name")
+        .orderBy("id", "desc")
+        .first();
+      if (result?.name !== latestKnexMigration) {
+        LOG.error("Latest knex migration not applied", {
+          db: result?.name,
+          latest: latestKnexMigration,
+        });
+      }
+    } else {
+      // Should have knex migration files
+      LOG.warn("No knex migration files");
+    }
 
-  // Middlewares
-  app.use(helmet()); // Must call helmet() first before the rest
-  app.use(cors());
-  app.use(express.json({ limit: "1mb" }));
-  app.use(bodyParser.urlencoded({ extended: true }));
+    // Create server
+    const app = express();
 
-  // Mount routes
-  mountRoutes(app);
+    // Log accesses
+    app.use((req, res, next) => {
+      LOG_ACCESS.info(`${req.ip}, ${req.method}, ${req.path}`);
+      next();
+    });
 
-  // Start server
-  server = app.listen(ENV.SERVER_PORT, ENV.SERVER_HOSTNAME, () => {
-    LOG.info(
-      `Started server: http://${ENV.SERVER_HOSTNAME}:${ENV.SERVER_PORT}`
-    );
-  });
-};
+    // Middlewares
+    app.use(helmet()); // Must call helmet() first before the rest
+    app.use(cors());
+    app.use(express.json({ limit: "1mb" }));
+    app.use(bodyParser.urlencoded({ extended: true }));
 
-// Shutdown server and database connections
-// Please note that after this command, you will not be able to run server again
-export const shutdown = () => {
-  db.shutdown();
-  server?.close();
-  server = null;
-};
+    // Mount routes
+    mountRoutes(app);
 
-export default execute;
+    // Start server
+    this.server = app.listen(ENV.SERVER_PORT, ENV.SERVER_HOSTNAME, () => {
+      LOG.info(
+        `Started server: http://${ENV.SERVER_HOSTNAME}:${ENV.SERVER_PORT}`
+      );
+    });
+  }
+
+  async shutdown() {
+    db.shutdown();
+    this.server?.close();
+    this.server = null;
+  }
+}
+
+export default new RunApp();

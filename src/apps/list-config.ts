@@ -1,15 +1,29 @@
+import { App, Command } from "./app";
 import { db } from "../data";
 
 // List database configurations
-const execute = async () => {
-  const configs = await db.config().select();
-  for (const config of configs) {
-    console.log(`[${config.key}]`);
-    console.log(config.value);
-    console.log();
+export class ListConfigApp extends App {
+  create(program: Command) {
+    program
+      .command("list-config")
+      .description("List database configurations")
+      .action(() => {
+        this.execute().finally(() => this.shutdown());
+      });
   }
 
-  db.shutdown();
-};
+  async execute() {
+    const configs = await db.config().select();
+    for (const config of configs) {
+      console.log(`[${config.key}]`);
+      console.log(config.value);
+      console.log();
+    }
+  }
 
-export default execute;
+  async shutdown() {
+    db.shutdown();
+  }
+}
+
+export default new ListConfigApp();
