@@ -1,5 +1,5 @@
 # Base image
-FROM node:slim
+FROM node:16.17.1-alpine
 
 # Set working directory
 WORKDIR /opt/backend
@@ -15,7 +15,7 @@ COPY build/index.js /opt/backend/index.js
 COPY build/knexfile.js /opt/backend/knexfile.js
 
 # Export web server
-EXPOSE 10002
+EXPOSE 8080
 
 # Run server
 CMD ["node", "index", "run"]

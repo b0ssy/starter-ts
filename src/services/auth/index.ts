@@ -16,12 +16,14 @@ export class Auth {
     this.options = options;
   }
 
-  createAxiosInstance() {
+  createAxiosInstance(options?: { useRootApiKey?: boolean }) {
     const axiosInstance = axios.create();
-    axiosInstance.interceptors.request.use((config) => {
-      config.headers.Authorization = `Bearer ${this.options.rootApiKey}`;
-      return config;
-    });
+    if (options?.useRootApiKey) {
+      axiosInstance.interceptors.request.use((config) => {
+        config.headers.Authorization = `Bearer ${this.options.rootApiKey}`;
+        return config;
+      });
+    }
     return axiosInstance;
   }
 
@@ -29,24 +31,23 @@ export class Auth {
     const config: Configuration = {
       isJsonMime,
       basePath: this.options.url,
-      accessToken: this.options.rootApiKey,
     };
     return config;
   }
 
-  createAdminApi() {
+  createAdminApi(options?: { useRootApiKey?: boolean }) {
     return new AdminApi(
       this.createApiConfiguration(),
       undefined,
-      this.createAxiosInstance(),
+      this.createAxiosInstance({ useRootApiKey: options?.useRootApiKey })
     );
   }
 
-  createAuthApi() {
+  createAuthApi(options?: { useRootApiKey?: boolean }) {
     return new AuthenticationApi(
       this.createApiConfiguration(),
       undefined,
-      this.createAxiosInstance(),
+      this.createAxiosInstance({ useRootApiKey: options?.useRootApiKey })
     );
   }
 }

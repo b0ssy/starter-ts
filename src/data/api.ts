@@ -17,7 +17,7 @@ export const registerSchemaOpenAPIv1 = <T extends ZodSchema>(
   zodSchema: T,
   options?: {
     public?: boolean;
-  },
+  }
 ) => {
   if (options?.public) {
     openApiRegistryV1.register(refId, zodSchema);
@@ -49,7 +49,7 @@ export class Controller {
   async logEvent(
     type: EventLog["type"],
     dataId: EventLog["dataId"],
-    data?: object,
+    data?: object
   ) {
     await db.eventLog().insert({
       type,
@@ -103,7 +103,7 @@ export class Routes<TController extends Controller> {
         req: Request;
         res: Response;
       }) => Promise<z.infer<TResSuccessBody> | void>;
-    },
+    }
   ): this {
     return this.use("get", path, summary, options);
   }
@@ -139,7 +139,7 @@ export class Routes<TController extends Controller> {
         req: Request;
         res: Response;
       }) => Promise<z.infer<TResSuccessBody> | void>;
-    },
+    }
   ): this {
     return this.use("post", path, summary, options);
   }
@@ -175,7 +175,7 @@ export class Routes<TController extends Controller> {
         req: Request;
         res: Response;
       }) => Promise<z.infer<TResSuccessBody> | void>;
-    },
+    }
   ): this {
     return this.use("patch", path, summary, options);
   }
@@ -211,7 +211,7 @@ export class Routes<TController extends Controller> {
         req: Request;
         res: Response;
       }) => Promise<z.infer<TResSuccessBody> | void>;
-    },
+    }
   ): this {
     return this.use("delete", path, summary, options);
   }
@@ -248,7 +248,7 @@ export class Routes<TController extends Controller> {
         req: Request;
         res: Response;
       }) => Promise<z.infer<TResSuccessBody> | void>;
-    },
+    }
   ): this {
     let reqBodyRef: string | null = null;
     if (options.req?.shape.body) {
@@ -258,7 +258,7 @@ export class Routes<TController extends Controller> {
         .split("/")
         .map((e) => (e.length > 0 ? e.charAt(0).toUpperCase() + e.slice(1) : e))
         .join("")}${method.charAt(0).toUpperCase()}${method.slice(
-        1,
+        1
       )}RequestBody`;
       registerSchemaOpenAPIv1(reqBodyRef, options.req.shape.body);
     }
@@ -270,11 +270,11 @@ export class Routes<TController extends Controller> {
         .split("/")
         .map((e) => (e.length > 0 ? e.charAt(0).toUpperCase() + e.slice(1) : e))
         .join("")}${method.charAt(0).toUpperCase()}${method.slice(
-        1,
+        1
       )}200Response`;
       registerSchemaOpenAPIv1(
         resSuccessBodyRef,
-        makeApiResponse(options.resSuccessBody),
+        makeApiResponse(options.resSuccessBody)
       );
     }
     const routeConfig: RouteConfig = {

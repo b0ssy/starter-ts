@@ -50,6 +50,8 @@ export class InitApp extends App {
           value = p.join(p.dirname(value), "test", "logs");
         } else if (key === "DB_DATABASE") {
           value = value.replace("local", "test");
+        } else if (key === "SERVER_PORT") {
+          value = "8181";
         }
       }
       lines.push(`${key}=${value}`);

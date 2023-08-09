@@ -17,18 +17,6 @@ const LOG_ACCESS = new Logger("apps/run.access", {
   logToFileOnly: true,
 });
 
-// Log down system-wide exceptions and do not crash the app
-process.on("uncaughtException", (err) => {
-  LOG.error("Uncaught exception", {
-    message: err?.message ?? "",
-    stack: err?.stack ?? "",
-  });
-});
-process.on("unhandledRejection", (err) => {
-  console.error(err);
-  LOG.error("Unhandled rejection", { err });
-});
-
 // Run server
 export class RunApp extends App {
   server: Server | null = null;
@@ -87,7 +75,7 @@ export class RunApp extends App {
     // Start server
     this.server = app.listen(ENV.SERVER_PORT, ENV.SERVER_HOSTNAME, () => {
       LOG.info(
-        `Started server: http://${ENV.SERVER_HOSTNAME}:${ENV.SERVER_PORT}`,
+        `Started server: http://${ENV.SERVER_HOSTNAME}:${ENV.SERVER_PORT}`
       );
     });
   }
@@ -98,5 +86,17 @@ export class RunApp extends App {
     this.server = null;
   }
 }
+
+// Log down system-wide exceptions and do not crash the app
+process.on("uncaughtException", (err) => {
+  LOG.error("Uncaught exception", {
+    message: err?.message ?? "",
+    stack: err?.stack ?? "",
+  });
+});
+process.on("unhandledRejection", (err) => {
+  console.error(err);
+  LOG.error("Unhandled rejection", { err });
+});
 
 export default new RunApp();

@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
-import { z, AnyZodObject, ZodObject } from "zod";
+import { z } from "zod";
 
 import { ENV } from "../config";
 import { Logger } from "../helpers/logger";
@@ -63,7 +63,7 @@ export const getSessionOrThrow = (res: Response) => {
 export const decodeSession = async (
   req: Request,
   res: Response,
-  next: NextFunction,
+  next: NextFunction
 ) => {
   try {
     // Decode all authentication methods
@@ -73,37 +73,14 @@ export const decodeSession = async (
       accessToken = bearerToken[1];
     }
 
-    // Decodable fields
+    // Verify and decode token
     let jwtPayload: JWTPayload | null = null;
-
-    // Verify token
     if (accessToken) {
       jwtPayload = decodeJWTPayload(accessToken);
-
-      // const tokenVerifyRes = await auth
-      //   .createAuthApi()
-      //   .v1TokenVerifyPost({
-      //     headers: { Authorization: `Bearer ${accessToken}` },
-      //   })
-      //   .catch(() => null);
-      // if (!tokenVerifyRes) {
-      //   throw new NotAuthorizedError(
-      //     "Please provide a valid access token",
-      //     "expired_access_token"
-      //   );
-      // }
-      // jwtPayload = {
-      //   userId: tokenVerifyRes.data.data.userId,
-      //   type: tokenVerifyRes.data.data.type,
-      // };
-      // roleNames = tokenVerifyRes.data.data.roleNames;
     }
 
     // Store in res.locals["session"]
-    const session = new Session({
-      jwtPayload,
-      accessToken,
-    });
+    const session = new Session({ jwtPayload, accessToken });
     res.locals["session"] = session;
 
     next();
@@ -118,19 +95,19 @@ export const decodeSession = async (
 // 3) Params (optional)
 // 4) Headers (optional)
 export const decode = <
-  TBody extends AnyZodObject,
-  TQuery extends AnyZodObject,
-  TParams extends AnyZodObject,
-  THeaders extends AnyZodObject,
+  TBody extends z.AnyZodObject,
+  TQuery extends z.AnyZodObject,
+  TParams extends z.AnyZodObject,
+  THeaders extends z.AnyZodObject,
 >(
   req: Request,
   res: Response,
-  schema?: ZodObject<{
+  schema?: z.ZodObject<{
     body?: TBody;
     query?: TQuery;
     params?: TParams;
     headers?: THeaders;
-  }>,
+  }>
 ): {
   body: z.infer<TBody>;
   query: z.infer<TQuery>;
@@ -139,7 +116,8 @@ export const decode = <
   session: Session;
 } => {
   // decodeSession() should already be called before
-  if (!res.locals["session"]) {
+  const session = res.locals["session"];
+  if (!session) {
     throw new NotAuthorizedError();
   }
 
@@ -154,7 +132,7 @@ export const decode = <
         `Check your request body: ${parsed.error.errors
           .map((e) => `[${e.path}] ${e.message}`)
           .join(", ")}`,
-        "invalid_request_body",
+        "invalid_request_body"
       );
     }
     body = parsed.data;
@@ -166,7 +144,7 @@ export const decode = <
         `Check your request query: ${parsed.error.errors
           .map((e) => `[${e.path}] ${e.message}`)
           .join(", ")}`,
-        "invalid_request_query",
+        "invalid_request_query"
       );
     }
     query = parsed.data;
@@ -178,7 +156,7 @@ export const decode = <
         `Check your request params: ${parsed.error.errors
           .map((e) => `[${e.path}] ${e.message}`)
           .join(", ")}`,
-        "invalid_request_params",
+        "invalid_request_params"
       );
     }
     params = parsed.data;
@@ -190,7 +168,7 @@ export const decode = <
         `Check your request headers: ${parsed.error.errors
           .map((e) => `[${e.path}] ${e.message}`)
           .join(", ")}`,
-        "invalid_request_headers",
+        "invalid_request_headers"
       );
     }
     headers = parsed.data;
@@ -200,7 +178,7 @@ export const decode = <
     query,
     params,
     headers,
-    session: res.locals["session"],
+    session,
   };
 };
 
@@ -214,12 +192,12 @@ export const decodeJWTPayload = (accessToken: string): JWTPayload => {
     if (err instanceof jwt.TokenExpiredError) {
       throw new NotAuthorizedError(
         "Please provide a valid access token",
-        "expired_access_token",
+        "expired_access_token"
       );
     } else {
       throw new NotAuthorizedError(
         "Please provide a valid access token",
-        "invalid_access_token",
+        "invalid_access_token"
       );
     }
   }
@@ -228,7 +206,7 @@ export const decodeJWTPayload = (accessToken: string): JWTPayload => {
 // Authorize user
 export const authorize =
   (options: {
-    userType?: "service_provider" | "customer";
+    userType?: "";
     roleNames?: string[];
     onCheckSession?: (session: Session) => void;
   }) =>
@@ -252,7 +230,7 @@ export const authorize =
       // Check role names
       if (roleNames) {
         const requiredRoles = session.jwtPayload?.roleNames?.filter(
-          (roleName) => roleNames.includes(roleName),
+          (roleName) => roleNames.includes(roleName)
         );
         if (!requiredRoles || requiredRoles.length <= 0) {
           throw new NotAuthorizedError();

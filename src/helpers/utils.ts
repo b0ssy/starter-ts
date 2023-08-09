@@ -2,6 +2,7 @@ import crypto, { KeyLike, BinaryLike, BinaryToTextEncoding } from "crypto";
 
 export type NullablePartial<T> = { [P in keyof T]?: T[P] | null };
 
+// Sleep and wait
 export const wait = async (milliseconds: number) => {
   await new Promise((resolve) => {
     setTimeout(() => {
@@ -10,9 +11,10 @@ export const wait = async (milliseconds: number) => {
   });
 };
 
+// Run function for a minimum duration
 export const runForAtLeast = async <T>(
   milliseconds: number,
-  fn: () => Promise<T>,
+  fn: () => Promise<T>
 ) => {
   const start = Date.now();
   let caughtErr: Error | null = null;
@@ -34,31 +36,35 @@ export const runForAtLeast = async <T>(
 export const isValidEmail = (email: string) => {
   return !!email.match(
     // eslint-disable-next-line
-    /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g,
+    /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g
   );
 };
 
+// Hash plaintext using md5
 export const md5 = (
   plaintext: BinaryLike,
-  encoding: BinaryToTextEncoding = "base64",
+  encoding: BinaryToTextEncoding = "base64"
 ) => {
   return crypto.createHash("md5").update(plaintext).digest(encoding);
 };
 
+// Hash plaintext using SHA-256
 export const sha256 = (
   plaintext: BinaryLike,
-  encoding: BinaryToTextEncoding = "base64",
+  encoding: BinaryToTextEncoding = "base64"
 ) => {
   return crypto.createHash("sha256").update(plaintext).digest(encoding);
 };
 
+// Generate random key
 export const generateRandomKey = (
   size = 32,
-  encoding: BufferEncoding = "base64",
+  encoding: BufferEncoding = "base64"
 ) => {
   return crypto.randomBytes(size).toString(encoding);
 };
 
+// Generate random RSA keys
 export const generateRSAKeys = async (): Promise<{
   privateKey: string;
   publicKey: string;
@@ -82,31 +88,33 @@ export const generateRSAKeys = async (): Promise<{
           reject(err);
         }
         resolve({ privateKey, publicKey });
-      },
+      }
     );
   });
 };
 
+// Encrypt plaintext using public key
 export const rsaPublicEncrypt = (publicKey: KeyLike, plain: Buffer): Buffer => {
   return crypto.publicEncrypt(
     {
       key: publicKey,
       padding: crypto.constants.RSA_PKCS1_PADDING,
     },
-    plain,
+    plain
   );
 };
 
+// Decrypt ciphertext using private key
 export const rsaPrivateDecrypt = (
   privateKey: KeyLike,
-  cipher: Buffer,
+  cipher: Buffer
 ): Buffer => {
   return crypto.privateDecrypt(
     {
       key: privateKey,
       padding: crypto.constants.RSA_PKCS1_PADDING,
     },
-    cipher,
+    cipher
   );
 };
 
@@ -115,7 +123,7 @@ export const isJsonMime = (mime: string) => {
   const jsonMime = new RegExp(
     // eslint-disable-next-line
     "^(application/json|[^;/ \t]+/[^;/ \t]+[+]json)[ \t]*(;.*)?$",
-    "i",
+    "i"
   );
   return (
     mime !== null &&

@@ -30,7 +30,7 @@ export const zEnv = z.object({
 
   // Server
   SERVER_HOSTNAME: z.string().default("0.0.0.0"),
-  SERVER_PORT: z.coerce.number().default(10002),
+  SERVER_PORT: z.coerce.number().default(8080),
 
   // S3 public bucket
   S3_PUBLIC_REGION: z.string().optional(),
