@@ -14,12 +14,14 @@ export class AppError extends Error {
   }
 }
 
+// 400
 export class BadRequestError extends AppError {
   constructor(message?: string, code = "bad_request") {
     super(400, code, message);
   }
 }
 
+// 401
 export class NotAuthorizedError extends AppError {
   constructor(
     message = "Please authenticate before running operation",
@@ -29,18 +31,27 @@ export class NotAuthorizedError extends AppError {
   }
 }
 
+export class UnsupportedOperationError extends BadRequestError {
+  constructor(message = "Operation is unsupported") {
+    super(message, "unsupported_operation");
+  }
+}
+
+// 404
 export class NotFoundError extends AppError {
   constructor(message?: string, code = "not_found") {
     super(404, code, message);
   }
 }
 
+// 429
 export class TooManyRequestsError extends AppError {
   constructor(message?: string, code = "too_many_requests") {
     super(429, code, message);
   }
 }
 
+// 500
 export class InternalServerError extends AppError {
   constructor(
     message = "Internal server error",
@@ -53,11 +64,5 @@ export class InternalServerError extends AppError {
 export class NotImplementedError extends InternalServerError {
   constructor(message = "Operation not implemented yet") {
     super(message, "not_implemented");
-  }
-}
-
-export class UnsupportedOperationError extends BadRequestError {
-  constructor(message = "Operation is unsupported") {
-    super(message, "unsupported_operation");
   }
 }

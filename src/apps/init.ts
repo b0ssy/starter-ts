@@ -56,11 +56,6 @@ export class InitApp extends App {
       }
       lines.push(`${key}=${value}`);
     }
-    // Test-specific env configs
-    if (options.test) {
-      lines.push("");
-      lines.push("TEST_LOCALSTACK_SES_DIRECTORY=");
-    }
 
     // Create env file by default
     // But if already exists, then print out to console
