@@ -9,7 +9,7 @@ beforeEach(async () => {
 
 describe("GET /v1/admin/event_logs", () => {
   test("GET /v1/admin/event_logs - ok", async () => {
-    await ctl.admin.eventLog().createOne({ type: "product.created" });
+    await ctl.admin.eventLog().createOne({ type: "" });
 
     const res = await apis.admin.v1AdminEventLogsGet(
       {},
